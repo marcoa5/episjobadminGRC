@@ -22,7 +22,7 @@ import {environment} from '../environments/environment';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'episjobadmin';
+  title = 'episjobadmingrc';
   userN:string='';
   userT:string |undefined;
   orient: boolean | undefined

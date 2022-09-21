@@ -3,6 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+	firebase:{
+		apiKey: "AIzaSyA9OHPbSNKBJUE7DqLAopJkfMMICo8hkHw",
+		authDomain: "episjobadmingrc.firebaseapp.com",
+		databaseURL: "https://episjobadmingrc-default-rtdb.europe-west1.firebasedatabase.app",
+		projectId: "episjobadmingrc",
+		storageBucket: "episjobadmingrc.appspot.com",
+		messagingSenderId: "918912403305",
+		appId: "1:918912403305:web:4346393bf9409facc91ff8",
+		measurementId: "G-R54FWQY8XB"
+	  },
   appVersion: require('../../package.json').version + '-dev',
   production: false,
   workshops:[
@@ -32,8 +42,8 @@ export const environment = {
 		{name: 'RigScan', val: 'RigScan'},
 		{name: 'Stazione di ricarica', val: 'Stazione di ricarica'},
 	],
-  url: 'http://localhost:3001/'
-  //url: 'https://episjobreq.herokuapp.com/'
+  //url: 'http://localhost:3001/'
+  url: 'https://episjobreqgrc.herokuapp.com/'
   //url: '/api/'
 };
 

@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'episjobadmin'`, () => {
+  it(`should have as title 'episjobadmingrc'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('episjobadmin');
+    expect(app.title).toEqual('episjobadmingrc');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('episjobadmin app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('episjobadmingrc app is running!');
   });
 });
