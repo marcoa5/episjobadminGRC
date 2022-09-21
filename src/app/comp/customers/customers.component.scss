@@ -1,0 +1,52 @@
+@import '../../../epi.scss';
+
+
+.cerca{
+    padding:0;
+}
+
+.custcard{
+    background-color: rgb(245,245,245);
+    height: 150px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.custcont{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-rows: repeat(auto-fill,1fr);
+    gap: 15px;
+    
+}
+
+.body{
+    margin-top:15px;
+    box-sizing: border-box;
+    display: grid;
+    padding: 2px;
+    grid-template-columns: 35px 1fr;
+    padding: 5px 15px;
+    gap: 3px 5px;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    gap: 15px 0;
+    color: $dark-text;
+}
+
+.l1{
+    padding:10px 20px;
+    color: $light-text;
+    //font-weight: 900;
+    background-color: $dark-text;
+    border-radius: 10px 10px 0 0;
+}
+
+.l1, .l2, .l3 {
+    max-width: 100%;
+    overflow: hidden;
+    margin-bottom: 0;
+    max-height: 20px;
+    white-space: nowrap;
+}

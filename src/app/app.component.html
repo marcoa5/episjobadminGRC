@@ -1,0 +1,55 @@
+<div class="mt">
+    <mat-toolbar color="primary" class="mt" [class.mat-elevation-z8]="true">
+    <img class="logo" height="25px" src="../assets/icons/Logo.svg" [matTooltip]="'App version: ' + version">
+    <span class="example-spacer"></span>   
+    <span class="contUser" *ngIf="userN && userN!='null'">
+      <button mat-raised-button class="example-icon" color="accent" (click)="logout()" *ngIf="chName">
+        <mat-icon>person</mat-icon>
+        {{width()? nome + ' ' + cognome: userN}}
+      </button>
+      
+    </span>
+    <span class="notif" *ngIf="userN && userN!='null'">
+      <button mat-raised-button class="example-icon" (click)="navNot()" color="accent" [matBadge]="not" matBadgeColor="warn" [matBadgeHidden]="not==0" *ngIf="chName">
+        <mat-icon>mail_outline</mat-icon>
+      </button>
+    </span>    
+  </mat-toolbar>
+</div>
+
+<div id="login" *ngIf="userN=='login' || spin">
+  <episjob-spin *ngIf="spin"></episjob-spin>
+  <episjob-login *ngIf="userN=='login'"></episjob-login>
+</div>
+<div class="content" *ngIf="userN!='login' && userN!=undefined">
+  <router-outlet></router-outlet> 
+</div>
+<div class="menu" [class.mat-elevation-z8]="true" *ngIf="!chHome()">
+  <div class="subMenu">
+    <div class="single" (click)="goTo('/')">
+      <mat-icon class="menuIcon" matTooltip="Home">home</mat-icon>
+      <div class="label">Home</div>
+    </div>
+    <div class="single" (click)="goTo('/rigs')">
+      <mat-icon class="menuIcon" matTooltip="Equipment">precision_manufacturing</mat-icon> 
+      <div class="label">Equipment</div>
+    </div>
+    <div class="single" (click)="goTo('/customers')">
+      <mat-icon class="menuIcon" (click)="goTo('/customers')" matTooltip="Companies">work</mat-icon> 
+      <div class="label">Companies</div>
+    </div>
+    <div class="single" *ngIf="chPos('TechRights')" (click)="goTo('/sj')">
+      <mat-icon class="menuIcon" matTooltip="Service Job" >text_snippet</mat-icon> 
+      <div class="label">ServiceJob</div>
+    </div>
+    <div class="single" *ngIf="chPos('SalesRights')" (click)="goTo('/visit')">
+      <mat-icon class="menuIcon" matTooltip="Visits" >recent_actors</mat-icon>
+      <div class="label">Visits</div>
+    </div>
+    <div class="single" *ngIf="chPos('SalesRights')" (click)="goTo('/contacts')">
+      <mat-icon class="menuIcon" matTooltip="Contacts">account_box</mat-icon> 
+      <div class="label">Contacts</div>
+    </div>
+    
+  </div>
+</div>

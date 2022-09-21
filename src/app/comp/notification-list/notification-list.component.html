@@ -1,0 +1,37 @@
+<!--<episjob-navbar title="Message Center" [cerca]="false"></episjob-navbar>-->
+
+<episjob-h2 padtop=0 icon="mail_outline" data="Notifications"></episjob-h2>
+<div class="buttonCont">
+    <div>Actions:</div>
+    <!--<button mat-stroked-button color="accent" (click)="selectAll()"><mat-icon>{{selected.length!=notif.length?'check_box_outline_blank':'check_box'}}</mat-icon></button>  
+    <button mat-stroked-button color="accent" *ngIf="selected.length>0" (click)="setRead(1)"><mat-icon>drafts</mat-icon></button>  
+    <button mat-stroked-button color="accent" *ngIf="selected.length>0" (click)="setRead(0)"><mat-icon>email</mat-icon></button>  
+    <button mat-stroked-button color="accent" *ngIf="selected.length>0" (click)="delete()"><mat-icon>delete</mat-icon></button> -->
+    <mat-icon (click)="selectAll()">{{selected.length!=notif.length?'check_box_outline_blank':'check_box'}}</mat-icon>
+    <mat-icon *ngIf="selected.length>0" (click)="setRead(1)">drafts</mat-icon>
+    <mat-icon *ngIf="selected.length>0" (click)="setRead(0)">email</mat-icon> 
+    <mat-icon *ngIf="selected.length>0" (click)="delete()">delete</mat-icon>
+</div>
+
+<div class="cont">
+    <episjob-spin *ngIf="spin==true"></episjob-spin>
+    <div *ngIf="notif.length>0 && spin==false">
+        
+        <div *ngFor="let n of notif; let index = index" class="notList" [ngClass]="{'unr':n.status==0}">
+            <mat-checkbox class="item" (change)="select(index, $event)" [checked]="selected.indexOf(index)>-1"></mat-checkbox>
+            <div class="text" (click)="go(n)">
+                <div class="t" [ngStyle]="{'font-weight': n.status==0? '600' : '400'}">{{n.title}}</div>
+                <div class="t" [ngStyle]="{'font-weight': n.status==0? '400' : '100'}">{{n.text}}</div>
+            </div>
+            <div class="button"><button mat-icon-button (click)="read(n)"><mat-icon>{{n.status==0? 'email':'drafts'}}</mat-icon></button></div>
+            <div class="button"><button mat-icon-button (click)="del(n)"><mat-icon>delete</mat-icon></button></div>
+    
+        </div>
+    </div>
+    <div *ngIf="notif.length==0 && spin==false">
+        No messages
+    </div>
+</div>
+<div class="but">
+    <button mat-raised-button color="primary" (click)="close()">Close</button>
+</div>

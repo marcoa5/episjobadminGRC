@@ -1,0 +1,44 @@
+@import '../../../../epi.scss';
+
+.mainCont{
+    max-height: 650px;
+    overflow-y: auto;
+}
+
+table{
+    width: 100%;
+}
+
+.actions{
+    cursor:pointer;
+}
+
+tr{
+    cursor: pointer;
+}
+
+.selected{
+    background-color: lightgrey;
+}
+
+th{
+    position:sticky;
+    top: 0;
+    background-color: white;
+    width: calc(100% / 7)
+}
+
+.icoCont{
+    display: grid;
+    grid-template-columns: 25px 1fr;
+    align-items: center;
+    gap:5px;
+}
+
+.light{
+    color: lightgrey;
+}
+
+.cursor{
+    cursor: pointer;
+}

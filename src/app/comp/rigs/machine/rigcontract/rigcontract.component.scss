@@ -1,0 +1,13 @@
+@import '../../../../../epi.scss';
+
+table{
+    width: 100%;
+}
+
+td{
+    cursor: pointer;
+}
+
+mat-paginator{
+    visibility: hidden;
+}

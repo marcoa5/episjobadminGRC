@@ -1,0 +1,7 @@
+<episjob-navbar [cerca]="false" [home]="true" [backB]="rou" [title]="newItem? 'New Contact':'Update Contact'"></episjob-navbar>
+
+<div class="cont">
+    <episjob-h2 icon="person" [data]="newItem? 'New Contact':'Update Contact'"></episjob-h2>
+    
+    <episjob-add-cancelbuttons  [a1]="'Cancel'" [check]="custForm.invalid" [a2]="newItem? 'Add' : 'Update'" [type]="'customer'"></episjob-add-cancelbuttons>
+</div>

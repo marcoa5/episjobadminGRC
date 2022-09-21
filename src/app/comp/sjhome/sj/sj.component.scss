@@ -1,0 +1,289 @@
+@import '../../../../epi.scss';
+
+@media screen and (max-width: 450px) {
+   *{
+        overscroll-behavior: contain;
+    } 
+}
+
+
+.onlysu{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px; 
+}
+
+.stepper{
+    max-width: 1000px;
+}
+
+.list{
+    height: 300px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.rigrow, .rigrowh{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+
+
+.rigdata{
+    overflow-x: hidden;
+    white-space: nowrap;
+    padding: 0 3px;
+}
+
+.righ{
+    overflow-x: hidden;
+    white-space: nowrap;
+    padding: 0 3px;
+    text-align: start;
+}
+
+.rigrowh{
+    overflow-x: hidden;
+    white-space: nowrap;
+    padding: 0 3px;
+    text-align: start;
+    font-weight: 600;
+}
+
+.rig{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.list{
+    cursor: pointer;
+    padding-bottom: 30px;
+}
+
+.group3, .group4{
+    display: grid;
+    gap:15px;
+}
+.group3{
+    grid-template-columns: repeat(3, 1fr);
+}
+.group4{
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.area{
+    width:100%;
+}
+
+.button{
+    padding-top: 30px;
+    width:100%;
+    display: grid;
+    justify-content: flex-end;
+    gap:15px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.but{
+    flex: 1 1 auto;
+    margin:0;
+    padding: 0;
+}
+
+.searchForm{padding-bottom: 30px;}
+
+@media screen and (max-width:750px) {
+    .rigrow{
+        grid-template-columns: repeat(2, 1fr);
+        padding: 10px 0;
+    }
+    .rigrow:nth-of-type(even){
+        background-color: rgb(245,245,245);
+    }
+    .rigrowh{
+        display: none;
+    }
+    .rigdata{
+        padding: 0 6px;
+    }
+
+    .searchbox{
+        width:100%;
+    }
+    .bol{
+        font-weight: 600;
+    }
+}
+
+
+@media screen and (max-width:950px) {
+    .group4{
+        grid-template-columns: 1fr 1fr;
+        gap: 0 15px;
+    }
+    
+}
+
+@media screen and (max-width:550px) {
+    .group3, .group4, .onlysu{
+        grid-template-columns: 1fr;
+        gap:0
+    }
+}
+
+.hide{
+    visibility: hidden;
+}
+
+.data{
+    min-width: 0;
+}
+
+.rigrow:hover{
+    background-color: $light-text;
+}
+
+.radiocont{
+    max-width: 350px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:15px;
+}
+
+.dayHead{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 30px);
+    gap: 10px;
+}
+
+.con{
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 30px; height: 60px;
+}
+
+.contSig{
+    max-width:100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap:15px;
+}
+
+@media screen and (min-width: 650px) {
+    .contSig{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.sig{
+    margin-top: 15px;   
+    width:100%;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+table{
+    border-collapse: collapse;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+table th{
+    //border: 1px solid $light-text;
+    background-color: $dark-text;
+    color: $light-text;
+    padding: 0 5px;
+    border-left: 1px solid rgb(245,245,245);
+
+}
+
+table td{
+    //border-bottom: 1px solid $dark-text;
+    border-left: 1px solid rgb(245,245,245);
+    //background-color: rgb(245,245,245);
+    overflow: hidden;
+    white-space: nowrap;
+    min-width: 22px;
+    padding: 10px;
+}
+
+table td:first-child{
+    min-width: unset;
+}
+
+img{
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+}
+
+.dele{
+    width: 24px; height: 24px;
+    margin-top:6px;
+}
+
+.dele1{
+    font-size: 10pt;
+    margin-top: -5px;
+}
+
+table td, table th{
+    text-align: center;
+}
+
+.techName{
+    text-align: left;
+    max-width: 110px;
+}
+
+.dataR{
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1020px) {
+    .lar{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1021px) {
+    .str{
+        display: none;
+    }
+}
+
+img{
+    cursor: pointer;
+}
+
+.newDayCont{
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    gap: 35px;
+    cursor: pointer;
+}
+
+.miniCont{
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+}
+
+.search{
+    margin-top:15px;
+}
+
+.hide{
+    position:fixed;
+    left: -1000px;
+    visibility:hidden;
+}
+
+.hidden{
+    visibility: hidden;
+    position: fixed;
+    top:-1000px;left:-1000px;
+}

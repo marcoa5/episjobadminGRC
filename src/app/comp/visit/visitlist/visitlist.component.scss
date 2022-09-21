@@ -1,0 +1,66 @@
+@import '../../../../epi.scss';
+
+
+.cont{
+    width:100%;
+    height:100%;
+    //max-height: min(calc(100vh - 140px), 450px);
+}
+
+.listCont{
+    max-height: calc(100% - 110px);
+    overflow-y: auto;
+    //height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 10px;
+}
+
+.newVisit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $dark-text;
+    background-color: $light-text;
+    border-radius: 5px 5px 0 0;
+    font-weight: 900;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.divtxt{
+    background-color: rgb(245,245,245);
+    border-radius: 5px 5px 0 0;
+    border-bottom: .5px solid $dark-text;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+    height: 51px;
+}
+
+.txtlabel{
+    color: rgb(130,130,130);
+    margin: 5px 10px 0 10px;
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.txt{
+    margin: 0px 10px 5px 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+}
+
+.lt{
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.spinC{
+    display: flex;
+    justify-content: center;
+}

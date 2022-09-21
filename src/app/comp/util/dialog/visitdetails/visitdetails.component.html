@@ -1,0 +1,30 @@
+<div mat-dialog-title>Visit Details</div>
+<div mat-dialog-content class="cont">
+    <episjob-label [values]="val" fillfit="fit"></episjob-label>
+    <mat-form-field  class="data">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="giorno" autocomplete="off" (dateInput)="chDate($event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker [touchUi]="chW()" #picker></mat-datepicker>
+    </mat-form-field>
+    <h4>Partecipants</h4>
+
+    <div class="list">
+        <mat-chip-list [selectable]="false">
+            <mat-chip *ngFor="let a of attList" [value]="a">
+                {{a}}
+            </mat-chip>
+        </mat-chip-list>
+    </div>
+    <h4>Notes</h4>
+    
+    <mat-form-field  class="textA">
+        <textarea matInput placeholder="Notes" [value]="notes" (input)="test($event)" rows="10"></textarea>
+    </mat-form-field> 
+    
+</div>
+
+<div mat-dialog-actions align="end">
+    <button mat-raised-button (click)="del()" color="primary"><mat-icon>delete</mat-icon>Delete Visit</button>
+    <button mat-raised-button color="primary" cdkFocusInitial (click)="onNoClick()">ok</button>
+</div>

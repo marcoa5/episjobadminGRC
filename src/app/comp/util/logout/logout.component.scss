@@ -1,0 +1,31 @@
+.spacer{
+    height: 25px;
+}
+
+.ch{
+    min-height: 100%;
+}
+
+.cb{
+    margin: 0;
+    padding: 0;
+    height:100%;
+}
+
+mat-divider{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.logBut{
+    display: flex;
+    align-items: center;
+
+}
+
+.clearCont{
+    width:100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:10px;
+}

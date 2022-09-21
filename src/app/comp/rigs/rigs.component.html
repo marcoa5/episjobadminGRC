@@ -1,0 +1,21 @@
+<episjob-navbar [title]="'Equipment list'"  (filter)="filter($event)"></episjob-navbar>
+<episjob-spin *ngIf="rigs.length==0"></episjob-spin>
+
+<div episjobCont class="cont" *ngIf="rigs.length>0">
+      <div class="card" episjobElevation *ngFor="let rig of rigs | snfilter:filtro" (click)="open(rig.model,rig.sn, rig.customer,rig.show)" [class.mat-elevation-z2]="true">
+        <h3 class="rigT">{{rig.model}}</h3>
+        <div class="gr">
+          <div class="te">
+            <h4 class="l1">{{rig.sn}}</h4>
+            <h4 class="l2">{{rig.in?rig.in:'----'}}</h4>
+            <p class="l2">{{rig.customer}}</p>
+            <p class="l3">{{rig.site || 'SITE UNKNOWN'}}</p>  
+          </div>
+          <div class="cat"*ngIf="rig.path!=''">
+            <img src="../../../assets/Rigs/{{rig.categ}}.png" width=100 [ngClass]="{'imgDisabled': rig.show==0}" *ngIf="rig.categ">
+          </div>
+        </div>
+      </div>
+</div>
+
+<episjob-addbut [fun]="'newrig'" [exportFleet]="true" (exp)="export()" (expDet)="exportDetails()"></episjob-addbut>

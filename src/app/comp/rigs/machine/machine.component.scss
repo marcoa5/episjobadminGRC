@@ -1,0 +1,38 @@
+@import '../../../../epi.scss';
+
+.cont{
+    display: grid;
+    gap: 15px;
+}
+
+.info{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.data{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:15px;
+}
+
+.can{
+    max-height: 370px;
+    max-width: 100%;
+}
+
+@media screen and (max-width:1700px) {
+
+    .data{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+
+@media screen and (max-width:850px) {
+    .data, .info{
+        grid-template-columns: 1fr;
+    }
+}

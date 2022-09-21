@@ -1,0 +1,38 @@
+<div  *ngIf="chPos('InternalRights')" class="divid">
+    <div>
+        <h2>Notifications</h2>
+        <div class="ch">
+            <div>
+                <mat-checkbox class="cb" [checked]="SJ>0" (change)="mod($event, '_sj')">SJ Notifications</mat-checkbox>
+            </div>
+            <div>
+                <mat-checkbox class="cb" [checked]="Visit>0" (change)="mod($event, '_visit')">Visit Notifications</mat-checkbox>
+            </div>
+            <div>
+                <mat-checkbox class="cb" [checked]="Newrig>0" (change)="mod($event, '_newrig')">Rig Data Notifications</mat-checkbox>
+            </div>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+</div>
+<h2>Version</h2>
+<div>App version: {{version}}</div>
+<mat-divider></mat-divider>
+<h2>Clear Updates</h2>
+<div class="clearCont">
+    <button mat-raised-button (click)="clear('cust')">Clear Customers</button>
+    <button mat-raised-button (click)="clear('fleet')">Clear Fleet</button> 
+</div>
+
+<mat-divider></mat-divider>
+<h2>Logout</h2>
+<div class="logBut">
+    <div>Click here to logout</div> 
+    <button mat-icon-button (click)="logout()" color="accent">
+        <mat-icon>logout</mat-icon>
+    </button>
+</div>
+
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" (click)="onNoClick()">Close</button>
+</div>

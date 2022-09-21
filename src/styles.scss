@@ -1,0 +1,132 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$episjobadmin-primary: mat-palette($mat-indigo);
+$episjobadmin-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$episjobadmin-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$episjobadmin-theme: mat-light-theme((
+  color: (
+    primary: $episjobadmin-primary,
+    accent: $episjobadmin-accent,
+    warn: $episjobadmin-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($episjobadmin-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.full-width-dialog .mat-dialog-container {
+  width: 95vw !important;
+  max-width: 1000px;
+}
+.full-width-dialog .mat-form-field-infix {
+  width: 100%;
+  max-width: 100%;
+}
+
+.sign-dialog .mat-dialog-container {
+  width: 100vw !important;
+}
+.sign-dialog .mat-form-field-infix {
+  width: 100%;
+  max-width: 100%;
+}
+
+.templ-dialog .mat-dialog-container {
+  //width: 90vw !important;
+  height: 75vh !important;
+}
+.templ-dialog .mat-form-field-infix {
+  //width: 90%;
+  height: 90%;
+}
+
+.not-dialog .mat-dialog-container {
+  width: 95vw !important;
+  height: 95vh !important;
+}
+.not-dialog .mat-form-field-infix {
+  width: 100%;
+  height: 100%;
+  //height: 85vh !important;
+  padding:0;
+}
+
+.sj-dialog .mat-dialog-container {
+  max-width: 600px !important;
+  max-height: 95vh !important;
+}
+.sj-dialog .mat-form-field-infix {
+  width: 100%;
+  max-height: 100%;
+  //height: 85vh !important;
+  padding:0;
+}
+
+.parts-dialog .mat-dialog-container {
+  width: 95vw !important;
+  max-height: 95vh !important;
+  max-width: 1200px !important;
+}
+.parts-dialog .mat-form-field-infix {
+  width: 100%;
+  max-height: 100%;
+  //height: 85vh !important;
+  padding:0;
+}
+
+.input-parts-dialog .mat-dialog-container {
+  width: 85vw !important;
+  max-height: 95vh !important;
+}
+.input-parts-dialog .mat-form-field-infix {
+  width: 100%;
+  max-height: 100%;
+}
+
+.contract .mat-dialog-container {
+  width: 95vW !important;
+  max-width: 650px !important;
+}
+.contract .mat-form-field-infix {
+  width: 100%;
+}
+
+.attachment .mat-dialog-container {
+  width: 95vw;
+  max-width: 650px !important;
+}
+.attachment .mat-form-field-infix {
+  width: 100%;
+}
+
+.filedialog .mat-dialog-container {
+  min-width: 300px !important;
+  max-width: 750px !important;
+  width: 35vw !important;
+}
+.filedialog .mat-form-field-infix {
+  width: 100%;
+}

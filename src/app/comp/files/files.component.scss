@@ -1,0 +1,46 @@
+@import '../../../epi.scss';
+
+
+.cont{
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+.file{
+    display:flex;
+    align-items: center;
+    background-color: rgb(245,245,245);
+    color: $dark-text;
+    border-radius: 10px 10px 0 0;
+    border-bottom: 1px solid $dark-text;
+    padding: 10px 5px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.nomeF{
+    margin-left: 15px;
+}
+
+.el{
+    position: sticky;
+    top:120px;
+    z-index: 2;
+}
+
+.panel, .panelShort{
+    background-color: white;
+    position: fixed;
+    top: 0; left:-10px;
+    width:200%; 
+    z-index: 1;
+}
+
+.panel{
+    height: 253px;
+}
+
+.panelShort{
+    height: 165px;
+}

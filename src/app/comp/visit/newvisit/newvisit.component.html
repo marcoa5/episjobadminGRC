@@ -1,0 +1,132 @@
+<episjob-navbar title="New Visit" [cerca]="false" [backB]="'visit'"></episjob-navbar>
+
+<div episjobCont>
+  <episjob-h2 icon="event_available" data="New Customer Visit" padtop="0"></episjob-h2>
+
+<mat-vertical-stepper linear=true orientation="vertical" (selectionChange)="test($event)" #stepper>
+  <mat-step [stepControl]="dateFormGroup">
+      <ng-template matStepLabel>Select Date</ng-template>
+      <form [formGroup]="dateFormGroup">
+        <div class="cont dateCont">
+          <mat-form-field  class="dateItem1">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date"> 
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker [touchUi]="chW()" #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="butt">
+          <button mat-raised-button matStepperNext color="primary" *ngIf="!dateFormGroup.invalid">Next</button>
+        </div>
+      </form>
+  </mat-step>
+  <mat-step [stepControl]="custFormGroup">
+      <ng-template matStepLabel>Customer</ng-template>
+        <form [formGroup]="custFormGroup" class="custForm">
+          <div class="custCont">
+            <mat-form-field  class="custItem1">
+              <mat-label>Customer Name</mat-label>
+              <input matInput type="text" placeholder="Customer Name" formControlName="c1" autocomplete="off" (keyup)="clearCust()">
+            <mat-error>Choose a customer from the list or type a new name</mat-error>
+            </mat-form-field>
+            <mat-list class="list custItem4" *ngIf="chList() && listVis">
+              <!--<div mat-subheader>Customers List</div>-->
+              <mat-list-item *ngFor="let c of customers1" [ngStyle]="{'cursor':1==1? 'pointer':'arrow'}" (click)="addC(c.c1!,c.c2!,c.c3!,c.id!)">
+                <mat-icon mat-list-icon>business</mat-icon>
+                <div mat-line>{{c.c1}}</div>
+                <div mat-line> {{c.c2}} | {{c.c3}} </div>
+              </mat-list-item>
+            </mat-list>
+            <mat-form-field  class="custItem2">
+              <mat-label>Customer Address 1</mat-label>
+              <input matInput type="text" placeholder="Customer Address 1" formControlName="c2"  autocomplete="off">
+              <mat-error>Type Address Line 1</mat-error>
+            </mat-form-field>
+            <mat-form-field   class="custItem3">
+              <mat-label>Customer Address 2</mat-label>
+              <input matInput type="text" placeholder="Customer Address 2" formControlName="c3"  autocomplete="off">
+              <mat-error>Type Address Line 2</mat-error>
+            </mat-form-field>
+          </div>
+
+            
+            <div class="butt">
+                <button mat-raised-button matStepperPrevious color="primary">Back</button>
+                <button mat-raised-button color="primary" *ngIf="!custFormGroup.invalid" (click)="goA(stepper)">Next</button>
+            </div>
+        </form>
+  </mat-step>
+  <mat-step [stepControl]="contactFormGroup">
+    <ng-template matStepLabel>Contact</ng-template>
+    <form [formGroup]="contactFormGroup">
+      <mat-form-field  style="display:none">
+        <mat-label>List</mat-label>
+        <input matInput formControlName="list">
+      </mat-form-field>
+        <h4>Epiroc Attendees</h4>
+        <div class="epiCon">
+          <mat-chip-list selectable multiple>
+            <mat-chip #c="matChip" *ngFor="let e of epiAtt" [value]="e.val" (click)="select(c, e.id, e.name)">
+                {{e.name}}
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+        <mat-divider></mat-divider>
+        <h4>Customer Attendees</h4>
+        <div class="epiCon">
+          <mat-chip-list selectable multiple>
+            <mat-chip #c="matChip" *ngFor="let e of custAtt" [value]="e" (click)="select(c, e)">
+                {{e}}
+            </mat-chip>
+            <mat-chip (click)="addCon()"><mat-icon>control_point</mat-icon>Add new Contact</mat-chip>
+          </mat-chip-list>
+        </div>
+    </form>
+  <div class="butt">
+    <button mat-raised-button matStepperPrevious color="primary">Back</button>
+    <button mat-raised-button matStepperNext color="primary" [disabled]="custList.length==0">Next</button>
+  </div>
+  </mat-step>
+  <mat-step [stepControl]="visitNotes">
+    <ng-template matStepLabel>Notes</ng-template>
+    <form [formGroup]="visitNotes">
+      <div class="notesCont">
+        <mat-form-field  class="notesItem1">
+          <mat-label>Place</mat-label>
+          <input matInput type="text" autocomplete="off" placeholder="Place" formControlName="place" (keyup)="checkPlace($event)">
+          <mat-error>Choose a place from the list</mat-error>
+        </mat-form-field>
+        <mat-list class="list notesItem2" *ngIf="lisComVis">
+          <!--<div mat-subheader>Existing Contacts for {{cuNa}}</div>-->
+          <mat-list-item *ngFor="let c of comuni" [ngStyle]="{'cursor':1==1? 'pointer':'arrow'}" (click)="conPlace(c)">
+            <mat-icon mat-list-icon>location_on</mat-icon>
+            <div mat-line>{{c}}</div>
+          </mat-list-item>
+        </mat-list>
+        <h4>Notes</h4>
+        <mat-form-field  class="notesItem3">
+          <textarea placeholder="Type notes here..." matInput formControlName="notes" rows="15"></textarea>
+        </mat-form-field>
+        
+        <episjob-potential [custId]="(cId[0] && cId[0].id)?cId[0].id:''"></episjob-potential>
+
+      </div>
+
+    </form>
+    <div class="butt">
+      <button mat-raised-button matStepperPrevious color="primary">Back</button>
+      <button mat-raised-button matStepperNext color="primary" *ngIf="!visitNotes.invalid" (click)="submit()">Submit</button>
+    </div>
+
+  </mat-step>
+
+  <!--POTENTIAL-->
+  <!--<mat-step [stepControl]="potential">
+    <ng-template matStepLabel>Potential (values in k€)</ng-template>
+    <div class="butt">
+      <button mat-raised-button matStepperPrevious color="primary">Back</button>
+      <button mat-raised-button matStepperNext color="primary" (click)=submit()>Submit</button>
+    </div>
+  </mat-step>-->
+</mat-vertical-stepper>
+</div>

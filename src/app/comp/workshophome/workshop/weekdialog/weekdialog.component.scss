@@ -1,0 +1,86 @@
+@import '../../../../../epi.scss';
+
+.header{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.formGroup{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) repeat(3, 15%);
+    gap:0 5px;
+}
+
+.formGroupSU{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) repeat(3, 15%) 24px;
+  gap:0 5px;
+}
+
+.formGroup, .formGroupSU{
+  align-items: center;
+}
+
+@media screen and (max-width:500px) {
+    .hid{
+        display: none;
+    }
+    .formGroup{
+        grid-template-columns: repeat(1, 1fr) repeat(3, 20%);
+    }
+
+    .formGroupSU{
+      grid-template-columns: repeat(1, 1fr) repeat(3, 20%) 24px;
+  }
+}
+
+.icons{
+  cursor: pointer;
+  margin-top: -16px;
+}
+
+.locked{
+  color:red;
+}
+
+::ng-deep .holy {
+    color:red;
+    .mat-form-field-label {
+      color: red;
+    }
+    .mat-form-field {
+        color: red;
+      }
+}
+
+::ng-deep .sat {
+    color: orange;
+    .mat-form-field-label {
+      color: orange;
+    }
+    .mat-form-field {
+        color: orange;
+      }
+}
+
+    ::ng-deep .temp{
+        color: green;
+        .mat-form-field-label {
+            color: green;
+          }
+          .mat-form-field {
+              color: green;
+            }
+     }
+
+     ::ng-deep .sent{
+        color: blueviolet;
+        .mat-form-field-label {
+            color: blueviolet;
+          }
+          .mat-form-field {
+              color: blueviolet;
+            }
+     }

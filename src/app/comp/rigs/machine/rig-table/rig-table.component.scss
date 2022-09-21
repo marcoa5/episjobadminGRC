@@ -1,0 +1,19 @@
+@import '../../../../../epi.scss';
+
+table{
+    width: 100%;
+}
+
+th{
+    position: sticky;
+    top:0;
+    background-color: white;
+}
+
+.center{
+    text-align: center;
+}
+
+mat-paginator{
+    overflow: hidden;
+}

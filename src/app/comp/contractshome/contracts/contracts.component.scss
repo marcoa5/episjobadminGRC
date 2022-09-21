@@ -1,0 +1,37 @@
+@import '../../../../epi.scss';
+
+.cont{
+    max-width: 2200px;
+}
+
+table{
+    width: 100%;
+}
+
+.actions{
+    cursor:pointer;
+}
+
+.icoCont{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:5px;
+}
+
+.light{
+    color: lightgrey;
+}
+
+.cursor{
+    cursor: pointer;
+}
+
+:host ::ng-deep .cen .mat-sort-header-container {
+    display: flex;
+    justify-content: center;
+}
+
+.cen{
+    text-align: center;
+}

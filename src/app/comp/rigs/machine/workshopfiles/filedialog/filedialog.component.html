@@ -1,0 +1,44 @@
+<div mat-dialog-title>File data</div>
+<div mat-dialog-content class="cont">
+    <mat-form-field>
+        <mat-label>File Name</mat-label>
+        <input type="text" matInput readonly [formControl]="fileName">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Serial nr</mat-label>
+        <input type="text" matInput readonly [formControl]="sn">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Model</mat-label>
+        <input type="text" matInput readonly [formControl]="model">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Customer</mat-label>
+        <input type="text" matInput readonly [formControl]="customer">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Staus</mat-label>
+        <input type="text" matInput readonly [formControl]="status">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Hours</mat-label>
+        <input type="text" matInput readonly [formControl]="hrs">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>SJ nr</mat-label>
+        <input type="text" matInput readonly [formControl]="sj">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>File nr</mat-label>
+        <input type="text" matInput readonly [formControl]="fileNr">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Workshop</mat-label>
+        <input type="text" matInput readonly [formControl]="ws">
+    </mat-form-field>
+</div>  
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" (click)="download(data)" matTooltip="Download file details"><mat-icon>cloud_download</mat-icon></button>
+    <button mat-raised-button color="primary" (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="'ok'">ok</button>
+</div>

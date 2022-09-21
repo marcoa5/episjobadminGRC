@@ -1,0 +1,33 @@
+<div mat-dialog-title>Risk Assessment</div>
+<div mat-dialog-content>
+    <form [formGroup]="risk1">
+        <div class="risk">
+            <div></div>
+            <div class="head">
+                <div>OK</div>
+                <div>NOK</div>
+                <div>NA</div>
+            </div>
+        </div>
+        <div *ngFor="let r of riskList; let i = index" class="risk">
+            <div>{{r}}</div>
+            <mat-radio-group aria-label="Select an option" [formControlName]="'a'+(i*1+1)">
+                <mat-radio-button value="ok">{{chW()?'OK':''}}</mat-radio-button>
+                <mat-radio-button value="nok">{{chW()?'NOK':''}}</mat-radio-button>
+                <mat-radio-button value="na">{{chW()?'NA':''}}</mat-radio-button>
+            </mat-radio-group>  
+        </div> 
+        <h4>Ci sono altri rischi?</h4>
+        <div *ngFor="let f of riskList2; let o = index" class="risk" >
+            <div>{{f}}</div>
+            <mat-radio-group aria-label="Select an option" [formControlName]="'b'+(o*1+1)">
+                <mat-radio-button value="ok">{{chW()?'OK':''}}</mat-radio-button>
+                <mat-radio-button value="nok">{{chW()?'NOK':''}}</mat-radio-button>
+                <mat-radio-button value="na">{{chW()?'NA':''}}</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" [mat-dialog-close]="risk1.value">Confirm</button>
+</div>

@@ -1,0 +1,266 @@
+<episjob-navbar backB="sj" title="Service Job" [cerca]="false"></episjob-navbar>
+<episjob-spin *ngIf="spin"></episjob-spin>
+<episjob-sign (closeS)="close($event)" [sign]="torc=='t'?techSign:custSign" [tc]="torc" *ngIf="!signatureClosed"></episjob-sign>
+<div episjobCont episjobContMaxWidth="1000" *ngIf="allow &&!spin">
+    <episjob-h2 data="New Service Job" icon="text_snippet" padtop=0></episjob-h2>
+    <mat-vertical-stepper #stepper class="stepper" linear=true *ngIf="!spin1">
+        <mat-step [stepControl]="rigForm">
+            <form [formGroup]="searchForm">
+                <ng-template matStepLabel>Select machine</ng-template>
+                <mat-form-field style="width:100%" class="search">
+                <mat-label>Search</mat-label>
+                <input matInput placeholder="Search" formControlName="search" (input)="searchCust($event)" autocomplete=off>
+                <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+                <div class="rigrowh" *ngIf="rigs.length>1">
+                    <div class="righ">S/N</div>
+                    <div class="righ">Model</div>
+                    <div class="righ">Customer</div>
+                    <div class="righ">Site</div>
+                </div>
+                <div class="list" *ngIf="rigs.length>1">
+                    <tr *ngFor="let r of rigs" class="rigrow" (click)="fil(r.sn)">
+                        <div class="rigdata bol">{{r.sn}}</div>
+                        <div class="rigdata bol">{{r.model}}</div>
+                        <div class="rigdata">{{r.customer}}</div>
+                        <div class="rigdata">{{r.site}}</div>
+                    </tr>
+                </div>
+            </form>
+            <form [formGroup]="rigForm" class="rig"  *ngIf="rigs.length==1"  (change)="saveData()">
+                <div [ngClass]="{'hide':pos!='SU'}"> 
+                    <h4>SJ data</h4>
+                    <div class="onlysu">
+                        <mat-form-field >
+                            <mat-label>Service Job ID</mat-label>
+                            <input matInput type="text" formControlName="sid">
+                        </mat-form-field>
+                        <mat-form-field >
+                            <mat-label>On Behalf of...</mat-label>
+                            <mat-select [(value)]="behalf">
+                                <mat-option *ngFor="let t of technicians" [value]="t.id">
+                                {{t.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field> 
+                    </div>
+                    <!--<episjob-sumenu [sent]="lock"></episjob-sumenu>-->
+                </div>
+                <h4>Machine data</h4>
+                <div class="group4">
+                    <mat-form-field class="data">
+                        <mat-label>Data</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="date" (input)="saveData()">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker [touchUi]="chW()" #picker></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Rig sn</mat-label>
+                        <input matInput type="text" autocomplete="off" formControlName="sn">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Rig p/n</mat-label>
+                        <input matInput type="text" autocomplete="off" formControlName="pn">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Model</mat-label>
+                        <input matInput type="text" autocomplete="off" formControlName="model">
+                    </mat-form-field>
+                </div>
+                <h4>Customer Data</h4>
+                <div class="group4">
+                    <mat-form-field>
+                        <mat-label>Customer</mat-label>
+                        <input matInput type="text" autocomplete="off" formControlName="customer">
+                    </mat-form-field>
+                    <mat-form-field class="hidden">
+                        <mat-label>Customer ID</mat-label>
+                        <input #cId matInput type="text" autocomplete="off" formControlName="customerid">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Customer Address 1</mat-label>
+                        <input matInput type="text" autocomplete="off" formControlName="customer2">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Customer Address 2</mat-label>
+                        <input matInput type="text" autocomplete="off" formControlName="customer3">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Site</mat-label>
+                        <input matInput type="text" autocomplete="off" formControlName="site">
+                    </mat-form-field>
+                </div>
+                <h4>Running Hours</h4>
+                <div class="group4">
+                    <mat-form-field>
+                        <mat-label>Engine Hrs</mat-label>
+                        <input matInput type="number" min="0" autocomplete="off" formControlName="engh">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Perc1 Hrs</mat-label>
+                        <input matInput type="number" min="0" autocomplete="off" formControlName="perc1h">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Perc2 Hrs</mat-label>
+                        <input matInput type="number" min="0" autocomplete="off" formControlName="perc2h">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Perc3 Hrs</mat-label>
+                        <input matInput type="number" min="0" autocomplete="off" formControlName="perc3h">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <h4>Job Type</h4>
+                    <mat-radio-group aria-label="Select an option" class="radiocont" formControlName="type" (change)="saveData()">
+                        <mat-radio-button value="STD">STD</mat-radio-button>
+                        <mat-radio-button value="SPE">SPE</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+
+                
+            </form>
+            <div class="button">
+                <button mat-raised-button matStepperNext color="primary" [disabled]="rigForm.invalid" class="but" (click)="saveData()">Next</button>
+            </div>
+        </mat-step>
+
+        <mat-step [stepControl]="reportForm">
+            <form [formGroup]="reportForm" (input)="saveData()">
+              <ng-template matStepLabel>Service Report</ng-template>
+              <h4>Service Report</h4>
+              <mat-form-field class="area">
+                <mat-label>Report</mat-label>
+                <textarea matInput formControlName="report" [rows]="5"  (input)="maiusc('report')"></textarea>
+              </mat-form-field>
+              <h4>Notes</h4>
+              <mat-form-field  class="area">
+                <mat-label>Notes</mat-label>
+                <textarea matInput formControlName="oss" [rows]="2" (input)="maiusc('oss')"></textarea>
+              </mat-form-field>
+              <div class="button">
+                <button mat-raised-button matStepperPrevious color="primary" class="but">Back</button>
+                <button mat-raised-button matStepperNext color="primary" [disabled]="reportForm.invalid" class="but"  (click)="saveData()">Next</button>
+                
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step [stepControl]="hoursForm">
+              <form [formGroup]="hoursForm" (input)="saveData()">
+                <ng-template matStepLabel>Hours</ng-template>
+                <mat-form-field class="hide">
+                    <input matInput type="number" min="1" formControlName="check">
+                </mat-form-field>
+                <div class="newDayCont">
+                    <div class="miniCont" (click)="addDay()">
+                        <button mat-mini-fab color="accent"  [disabled]="days && days.length>6" style="margin:15px 0;" color="primary">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                        <p>Add new day</p>
+                    </div>
+                    <div class="miniCont" (click)="hrsSplit()" *ngIf="chIMI() && this.days.length>0">
+                        <button mat-mini-fab color="accent"  [disabled]="days && days.length>6" style="margin:15px 0;" color="primary">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                        <p>Hours Split</p>
+                    </div>
+                </div>
+                <table *ngIf="days && days.length>0">
+                    <tr episjobElevation class="tabTr">
+                        <th rowspan="2" class="lar">#</th>
+                        <th rowspan="2" class="techName">TECH</th>
+                        <th rowspan="2">DATE</th>
+                        <th colspan="2" class="lar">{{rigForm.controls.type.value.toLowerCase()=='spe'?'SPO':'STD'}}</th>
+                        <th colspan="2" class="lar">{{rigForm.controls.type.value.toLowerCase()=='spe'?'SPS':'STR'}}</th>
+                        <th colspan="2" class="lar">MNT</th>
+                        <th colspan="2" class="lar">MF</th>
+                        <th colspan="2" class="lar">MNF</th>
+                        <th colspan="2" class="str">TOT</th>
+                        <th rowspan="2" class="lar">KM</th>
+                        <th rowspan="2" class="lar">SPV</th>
+                        <th rowspan="2" class="lar">OFF</th>
+                        <th rowspan="2" class="lar">OFS</th>	
+                        <th rowspan="2">Del</th>	
+                    </tr>
+                    <tr episjobElevation class="tabTr">
+                        <th class="lar">V</th>
+                        <th class="lar">L</th>
+                        <th class="lar">V</th>
+                        <th class="lar">L</th>
+                        <th class="lar">V</th>
+                        <th class="lar">L</th>
+                        <th class="lar">V</th>
+                        <th class="lar">L</th>
+                        <th class="lar">V</th>
+                        <th class="lar">L</th>
+                        <th class="str">V</th>
+                        <th class="str">L</th>
+                    </tr>
+                    <tr [class.mat-elevation-z2]="true" *ngFor="let d of days; let i=index" clasS="tabTr dataR">
+                        <td class="lar index"  (click)="addDay(i)">{{i+1}}</td>
+                        <td class="techName lar"  (click)="addDay(i)">{{d.tech}}</td>
+                        <td class="techName str" (click)="addDay(i)">{{d.techs}}</td>
+                        <td class="lar" (click)="addDay(i)">{{d.datel}}</td>
+                        <td class="str" (click)="addDay(i)">{{d.dates}}</td>
+                        <td class="lar" (click)="addDay(i)">{{d.hr.spov!=0?d.hr.spov:''}}</td>
+                        <td class="lar" (click)="addDay(i)">{{d.hr.spol!=0?d.hr.spol:''}}</td>
+                        <td class="lar" (click)="addDay(i)">{{d.hr.spsv!=0?d.hr.spsv:''}}</td>
+                        <td class="lar" (click)="addDay(i)">{{d.hr.spsl!=0?d.hr.spsl:''}}</td>
+                        <td class="lar" (click)="addDay(i)">{{d.hr.mntv!=0?d.hr.mntv:''}}</td>
+                        <td class="lar" (click)="addDay(i)">{{d.hr.mntl!=0?d.hr.mntl:''}}</td>
+                        <td class="lar" (click)="addDay(i)">{{d.hr.mfv!=0?d.hr.mfv:''}}</td>
+                        <td class="lar" (click)="addDay(i)">{{d.hr.mfl!=0?d.hr.mfl:''}}</td>
+                        <td class="lar" (click)="addDay(i)">{{d.hr.mnfv!=0?d.hr.mnfv:''}}</td>
+                        <td class="lar" (click)="addDay(i)">{{d.hr.mnfl!=0?d.hr.mnfl:''}}</td>
+                        <td class="str" (click)="addDay(i)">{{d.hr.spov*1+d.hr.spsv*1+d.hr.mntv*1+d.hr.mfv*1+d.hr.mnfv*1!=0?d.hr.spov*1+d.hr.spsv*1+d.hr.mntv*1+d.hr.mfv*1+d.hr.mnfv*1:''}}</td>
+                        <td class="str" (click)="addDay(i)">{{d.hr.spol*1+d.hr.spsl*1+d.hr.mntl*1+d.hr.mfl*1+d.hr.mnfl*1+d.hr.off*1+d.hr.ofs*1!=0?d.hr.spol*1+d.hr.spsl*1+d.hr.mntl*1+d.hr.mfl*1+d.hr.mnfl*1+d.hr.off*1+d.hr.ofs*1:''}}</td>
+                        <td class="lar" (click)="addDay(i)">{{d.hr.km!=0?d.hr.km:''}}</td>
+                        <td class="lar" (click)="addDay(i)">{{d.hr.spv!=0?d.hr.spv:''}}</td>
+                        <td class="lar" (click)="addDay(i)">{{d.hr.off!=0?d.hr.off:''}}</td>
+                        <td class="lar" (click)="addDay(i)">{{d.hr.ofs!=0?d.hr.ofs:''}}</td>
+                        <td class="del" (click)="delete(i)">
+                            <button mat-mini-fab class="dele" color="primary"><mat-icon class="dele1">clear</mat-icon></button>
+                        </td>
+
+                    </tr>
+                </table>
+                <div class="button">
+                    <button mat-raised-button matStepperPrevious color="primary" class="but">Back</button>
+                    <button mat-raised-button matStepperNext color="primary" [disabled]="!days || days.length<1" class="but"  (click)="saveData()">Next</button>
+                </div>
+              </form>
+              
+          </mat-step>
+          <mat-step [stepControl]="signatureForm">
+            <form [formGroup]="signatureForm">
+              <ng-template matStepLabel>Signatures</ng-template>
+              <div class="contSig">
+                <div>
+                    <h4>Technician's signature</h4>
+                    <div class="sig">
+                        <!--<button mat-raised-button color="accent" (click)="sign('t')">Technician</button>-->
+                        <img episjobElevation width=450 height=190 [src]="techSign? techSign: '../../../../assets/blank.png'" (click)="sign('t')">  
+                    </div>
+                </div>
+                <div>
+                    <h4>Customer's signature</h4>
+                    <div class="sig">
+                        <!--<button mat-raised-button color="accent" (click)="sign('c')">Customer</button>-->
+                        <img episjobElevation width=450 height=190 [src]="custSign? custSign : '../../../../assets/blank.png'" (click)="sign('c')">  
+                    </div>
+                </div>
+               
+              </div>
+              <episjob-sjemail [id]="rigForm.controls.customerid.value" (listOfEmail)="getList($event)" [mail]="templist"></episjob-sjemail>
+              <div class="button">
+                  <button mat-raised-button matStepperPrevious color="primary" class="but">Back</button>
+                  <button mat-raised-button color="primary" class="but" (click)="back()">Save&Close</button>
+                  <button mat-raised-button matStepperNext color="primary" class="but" (click)="send()" [disabled]="(techSign=='' || custSign=='') || (!days || days.length<1) || (reportForm.invalid) || rigForm.invalid || maillist=='' || chOffline()">Send</button>
+              </div>
+            </form>
+            
+        </mat-step>
+    </mat-vertical-stepper>
+</div>
+
+<div *ngIf="!allow && !spin" episjobCont>Restricted Area</div>

@@ -1,0 +1,38 @@
+<episjob-spin *ngIf="spin"></episjob-spin>
+
+<div class="header">
+    <div class="subHeader">
+        <button mat-stroked-button class="row" *ngIf="role">
+            <mat-icon class="green">check_circle</mat-icon>
+            {{wide?'User role: '+role:role}}
+        </button>
+        <button mat-stroked-button class="row">
+            <mat-icon [ngClass]="{'red':chOffline,'green':!chOffline}">{{!chOffline? 'wifi':'wifi_off'}}e</mat-icon>
+           {{wide?'Network Status: ' + (!chOffline? 'Online':'Offline'):!chOffline? 'Online':'Offline'}}
+        </button>
+    </div>
+    <div class="subHeader">
+        <button mat-stroked-button class="row cur"  (click)="updateMOL()">
+            <mat-icon [ngClass]="{'red':!fleetUptodate,'green':fleetUptodate}">{{fleetUptodate==undefined?'wifi_off':(fleetUptodate? 'check_circle':'cancel')}}</mat-icon>
+            {{wide?'Fleet Local Database: '+rigs.length + ' machines':rigs.length + ' machines'}}
+        </button>
+        <button mat-stroked-button class="row cur"  (click)="updateCust()">
+            <mat-icon [ngClass]="{'red':!custUptodate,'green':custUptodate}">{{custUptodate==undefined? 'wifi_off':(custUptodate? 'check_circle':'cancel')}}</mat-icon>
+            {{wide?'Customer Local Database: '+customers.length + ' companies':customers.length + ' companies'}}
+        </button>
+    </div>
+</div>
+<div id="start" *ngIf="!spin">
+    
+    <div class="butC" *ngFor="let a of buttons | disbutton: pos">
+        <button mat-raised-button class="but" color="accent" (click)="nav(a.route, a.auth)" [disabled]="a.dis==false?chOffline:false">
+            <div>
+                <mat-icon class="butIcon">{{a.icon}}</mat-icon>
+                <p class="label">{{a.id}}</p>  
+            </div>
+            
+        </button>
+    </div>
+    
+</div>
+

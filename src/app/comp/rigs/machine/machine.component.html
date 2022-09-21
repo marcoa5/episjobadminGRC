@@ -1,0 +1,67 @@
+<episjob-navbar [backB]="'rigs'" [title]="'Equipment'" [cerca]="false"  [home]="true"></episjob-navbar>
+
+<div (window:resize)="onResize()" *ngIf="allow">
+    
+    <div class="mainCont" episjobCont *ngIf="customer">
+        <episjob-top-menu [valore]="valore" [pos]="pos" [inizio]="data[0]?data[0].x:undefined" (date)="readD($event)" *ngIf="data[0]"></episjob-top-menu>
+        <div class="cont">
+            <div class="info">
+                <div class="item1">
+                    <episjob-h2 padtop="0" icon="precision_manufacturing" [data]="model" [showAdd]="showAdd" [showMol]="true" (mol)="open($event)" (addCD)="addCD($event)"></episjob-h2>
+                    <episjob-label [values]="rigLabels"></episjob-label>
+                </div>
+                <div class="item2" *ngIf="cCom!=0">
+                    <episjob-h2 icon="update" [data]="infoH" padtop=0 *ngIf="hrsLabels.length>0"></episjob-h2>
+                    <p *ngIf="cCom==0">No data to display</p>
+                    <episjob-spin *ngIf="hrsLabels.length==0"></episjob-spin>
+                    <episjob-label *ngIf="cCom!=0 && hrsLabels.length>0" [values]="hrsLabels"></episjob-label>
+                </div> 
+            </div>
+            <div class="data">
+                <div class="item3" *ngIf="cCom!=0 && !(datafil.length==1 && datafil[0].y==0)">
+                    <episjob-h2 icon="update" data="Engine Hours" padtop="0"></episjob-h2>
+                    <episjob-spin *ngIf="!g1"></episjob-spin>
+                    <canvas class="can" id="orem" [class.mat-elevation-z2]="true" [ngClass]="{'hide':!g1}"></canvas>
+                </div>
+                <div class="item3" *ngIf="cCom!=0 && !(datafil.length==1 && datafil[0].y1==0) && chPerc()">
+                    <episjob-h2 icon="update" data="Percussion Hours" padtop="0"></episjob-h2>
+                    <episjob-spin *ngIf="!g2"></episjob-spin>
+                    <canvas class="can" id="perc1" [class.mat-elevation-z2]="true"  [ngClass]="{'hide':!g2}"></canvas>
+                </div>
+                <div class="item3" *ngIf="cCom!=0  && !(datafil.length==1 && datafil[0].y==0)">
+                    <episjob-h2 padtop=0 icon="update" data="Running Hours History" [showSort]="true" (sort)="sortDataTable($event)" ></episjob-h2>
+                    <episjob-spin *ngIf="datafil.length==0"></episjob-spin>
+                    <episjob-rig-table [dataSource]="datafil" [pos]="pos" (action1)=up($event) (action2)="de($event)" [sortDA]="sortT"></episjob-rig-table>
+                </div>
+                <div class="item3" *ngIf="cCom!=0 && sjList.length>0">
+                    <episjob-h2 padtop=0 icon="content_paste" class="title" [data]="'Service Job History'" [showSort]="true" (sort)="sortDataSJ($event)"></episjob-h2>
+                    <episjob-spin *ngIf="sjList.length==0"></episjob-spin>
+                    <episjob-sjlist [list]="sjList" [customer]="customer" [model]="model" [sortDA]="sortSJ"></episjob-sjlist>
+                </div>
+                <div class="item3" *ngIf="customer=='IMI FABI SPA' && chsjList()">
+                    <episjob-h2 padtop="0" icon="content_paste" class="title" [data]="'Hours details'" [showDL]="true" (copy)="dlData($event)"></episjob-h2>
+                    <episjob-imifabi [list]="sjList" ></episjob-imifabi>
+                </div>
+                <div class="item3" *ngIf="partReqList.length>0">
+                    <episjob-h2 padtop="0" icon="construction" class="title" data="Parts Request" (sort)="sortDataParts($event)"></episjob-h2>
+                    <episjob-partsereq [pos]="pos" [_reqlist]="partReqList" [sortP]="change" [sortParts]="sortParts"></episjob-partsereq>
+                </div>
+                <div class="item3" *ngIf="SElist.length>0">
+                    <episjob-h2 padtop="0" icon="plumbing" class="title" data="Sub Equipment" [addSubEq]="true" (addSub)="addSubEq($event)"></episjob-h2>
+                    <episjob-subeq [pos]="pos" [list]="SElist"></episjob-subeq>
+                </div>
+                <div class="item3" *ngIf="contract.length>0">
+                    <episjob-h2 padtop="0" icon="class" class="title" data="Contracts"></episjob-h2>
+                    <episjob-rigcontract [list]="contract"></episjob-rigcontract>
+                </div>
+                <div class="item3" *ngIf="files.length>0">
+                    <episjob-h2 padtop="0" icon="home_work" class="title" data="Workshop Files"></episjob-h2>
+                    <episjob-workshopfiles [list]="files"></episjob-workshopfiles>
+                </div>
+            </div>
+        </div>
+    </div>
+    <episjob-editdelbut [sj]="sjList.length>0" [parts]="partReqList.length>0" [valore]="valore" [machine]="true" class="butt" [addP]="true" [addHr]="true" [nome]="valore" [func]="'MOL'" [check]="contr()" (edit)="go($event)" style="z-index: 100;" (addH)="updH($event)" (hrsReport)="reportHrs()" (sjReport)="reportSJ()" (addParts)="addP()" (expParts)="exportParts()"></episjob-editdelbut>
+</div>
+<div class="mainCont" episjobCont *ngIf="!allow">Restricted area</div>
+

@@ -1,0 +1,50 @@
+.cont{
+    display:grid;
+    grid-template-columns: repeat(1, minmax(310px, 1fr));
+    gap: 15px;
+}
+
+.spacer{
+    width: 15px;
+}
+
+.cont1{
+    display: flex;
+    align-items: center;
+}
+
+.load{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.te{
+    text-align: center;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.butCont{
+    width:100%;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(120px,1fr));
+}
+
+.formCont{
+    display: flex;
+    justify-content: flex-end;
+}
+.sea{
+    max-width: 450px;
+    width:100%;
+}
+
+@media screen and (max-width:800px){
+    .sea{
+        flex: 1 1 auto;
+    }
+}
+

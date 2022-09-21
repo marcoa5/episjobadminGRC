@@ -1,0 +1,14 @@
+@import '../../../../epi.scss';
+
+.cur{
+    cursor: pointer;
+}
+
+table{
+    width:100%;
+}
+
+.sel{
+    background-color: $light-text;
+    color: $dark-text;
+}

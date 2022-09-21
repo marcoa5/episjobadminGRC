@@ -1,0 +1,85 @@
+@import '../../../epi.scss';
+
+.cont{
+    width:100%;
+    height: calc(100% - 148px);
+    overflow-y: auto;
+}
+
+.but{
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 35px;
+    width: 100%;
+}
+
+
+.notList{
+    display: grid;
+    grid-template-columns: 30px auto 45px 45px;
+    background-color: rgb(245,245,245);
+    border-radius: 5px 0;
+    margin-bottom: 5px;
+    border-bottom: 1px solid $dark-text;
+    color: $dark-text;
+    cursor: pointer;
+    align-items: baseline;
+    gap:5px;
+}
+
+
+
+.t{
+    align-self: center;
+    justify-self: flex-start;
+}
+
+.text{
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+mat-icon{
+    cursor: pointer;
+}
+
+.buttonCont{
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap:15px;
+}
+
+button{
+    margin:0
+}
+
+.bbb{
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width:750px) {
+    .text{
+        flex-direction: column;
+        gap:0px;
+    }
+    .t{
+        justify-self: center;
+        align-self: flex-start;
+    }
+}
+
+.unr{
+    background-color: $light-text;
+}
+
+.item{
+    margin: 0 10px;
+}

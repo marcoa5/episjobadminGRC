@@ -1,0 +1,14 @@
+<div mat-dialog-title>Travel Expenses</div>
+<div mat-dialog-content class="cont">
+    <form [formGroup]="travelE">
+        <mat-form-field >
+            <mat-label>Km</mat-label>
+            <input matInput type="number" min=0 [max]="max" autocomplete="off" #km cdkFocusInitial formControlName="km" (input)="chMax($event)">
+        </mat-form-field>
+    </form>
+    <div>x 0.07 €/km = {{sum(km.value)}} €</div>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="!sum(km.value)" [mat-dialog-close]="[km.value,sum(km.value)]">Ok</button>
+</div>

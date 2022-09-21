@@ -1,0 +1,98 @@
+
+@import '../../../epi.scss';
+
+
+
+:root{
+    --wid-card: 200px;
+}
+
+.card{
+    background-color: rgb(245,245,245);
+    height: 180px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.cardC{
+    justify-self: center;
+    align-self: center;
+    cursor: pointer;
+}
+
+.cont{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-rows: repeat(auto-fill,1fr);
+    gap: 15px;
+}
+
+.rigT{
+    background-color: $dark-text;
+    color: $light-text;
+    padding-left: 20px;
+    padding-top:3px;
+    margin:0;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+}
+
+.subF{
+    position:fixed;
+    transition: 0.5s;
+    height: 60px;
+    z-index: 2;
+}
+
+
+.cerca{
+    padding:0;
+}
+
+#fil{
+    background-color: $dark-text;
+    color: $light-text;
+    font-family: Arial;
+    border-radius: 20px;
+    padding:5px;
+}
+
+.l1{
+    margin: 10px 20px 10px 20px;
+    overflow: hidden;
+    white-space:nowrap;
+}
+.l2{
+    margin: 0 20px 10px 20px;
+}
+
+.l3{
+    margin: 0 20px 0 20px;
+}
+
+.l2, .l3{
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.gr{
+   display: grid;
+   grid-template-columns: 65% 35%; 
+}
+
+img{
+    position: absolute;
+}
+
+.disabled{
+    color: rgb(200,200,200)
+}
+
+.imgDisabled{
+    opacity: .5;
+}
+
+.titleDisabled{
+    color: rgba(255, 204, 0, 0.438)
+}

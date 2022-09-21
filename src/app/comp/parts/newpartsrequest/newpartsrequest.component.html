@@ -1,0 +1,40 @@
+<div mat-dialog-title>Select rig</div>
+<div mat-dialog-content class="mainCont">
+  <episjob-selectmachine [search]="data.sn" (info)="sel($event)"></episjob-selectmachine>
+  <div class="cont" *ngIf="details.length>0">
+    <episjob-label [values]="details"></episjob-label>
+    <h4 class="typeH">Request type</h4>
+    <mat-radio-group class="button" [(ngModel)]="type">
+      <mat-radio-button value="Service" *ngIf="!chPos('NewPartsReqService')">Service</mat-radio-button>
+      <mat-radio-button value="CustomerSupport" *ngIf="!sol">Customer Support</mat-radio-button>
+      <mat-radio-button value="Customer" *ngIf="sol" [checked]="chCheck('NewPartsReqService')">Customer</mat-radio-button>
+    </mat-radio-group>
+    <div class="origdate">
+      <div class="origs">
+        <h4 class="typeH">Originator</h4>
+        <mat-form-field class="orig">
+          <mat-label>Originator</mat-label>
+          <mat-select [(value)]="tech">
+            <mat-option *ngFor="let t of technicians" [value]="t.id">
+              {{t.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="dates">
+        <h4 class="typeH">Date</h4>
+        <mat-form-field class="date">
+          <mat-label>Date</mat-label>
+          <input matInput [matDatepicker]="datepicker" [(ngModel)]="date">
+          <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+          <mat-datepicker #datepicker>
+          </mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" (click)="onNoClick()" cdkFocusInitial>Cancel</button>
+  <button mat-raised-button color="primary" [disabled]="type=='' || type==undefined || details.length==0 || tech==undefined" (click)="go()">Proceed</button>
+</div>

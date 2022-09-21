@@ -1,0 +1,24 @@
+<episjob-navbar [cerca]="false" title="Service Jobs"></episjob-navbar>
+
+<div episjobCont  *ngIf="!allow">Restricted Area</div>
+<div id="test"></div>
+<div episjobCont episjobContMaxWidth="1500" *ngIf="allow"> 
+    <episjob-h2 data="Actions" icon="rocket_launch" padtop=0></episjob-h2>
+    <div class="butCont">
+        <button mat-raised-button color="primary" (click)="go()">{{chW()? 'Start new request':'New'}}</button>
+        <button mat-raised-button color="primary" [disabled]="sjId==''" (click)="open(sjId)">Open</button>
+        <button mat-raised-button color="primary" [disabled]="sjId=='' || !chOnline() || !chDel" (click)="delete()">{{chW()? 'Delete draft':'Delete'}}</button>
+        <button mat-raised-button color="primary" [disabled]="sjId=='' && sjUrl==-1 || !chOnline()" (click)="exportPdf()">{{chW()? 'Export PDF':'PDF'}}</button>
+        <button mat-raised-button color="primary" [disabled]="sjId=='' && sjUrl==-1 || !chOnline()" (click)="exportMa()">{{chW()? 'Export MA':'MA'}}</button>
+    </div>
+    <episjob-spin *ngIf="spin && list1.length==0"></episjob-spin>
+    <div *ngIf="!spin && list1.length>0">
+        <episjob-h2 icon=mark_email_read data="Drafts"></episjob-h2>
+        <episjob-jobslist [list]="list1"  (select)="select($event, 'draft')" (directopen)="open($event)"></episjob-jobslist>
+    </div>
+    <episjob-spin *ngIf="spin && listSent.length==0 && chPos('SURights')"></episjob-spin>
+    <div *ngIf="!spin && listSent.length>0">
+        <episjob-h2 icon=approval data="Sent for approval"></episjob-h2>
+        <episjob-jobslist [alreadySent]=true [list]="listSent" (select)="select($event, 'sent')" (directopen)="open($event)"></episjob-jobslist>
+    </div>
+</div>

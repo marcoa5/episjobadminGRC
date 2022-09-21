@@ -1,0 +1,35 @@
+@import '../../../epi.scss';
+
+.tech{
+    display: flex;
+    border-bottom: 1px solid $dark-text;
+    padding: 10px 30px;
+    border-radius: 10px 10px 0 0;
+    background-color: rgb(245,245,245);
+    color: $dark-text;
+    align-items: center;
+    cursor: pointer;
+}
+
+p{margin:0}
+
+.nome{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.spacer{
+    width: 20px;
+}
+
+.contS{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap:15px;
+}
+
+h4{
+    margin-bottom: 5px;
+}

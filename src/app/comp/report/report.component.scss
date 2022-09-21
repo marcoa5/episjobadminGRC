@@ -1,0 +1,213 @@
+@import '../../../epi.scss';
+
+#ex{
+    width:100%;
+    border-collapse: collapse;
+    display: none;
+}
+#ex td{
+    text-align: center;
+    border: 1px solid black
+    
+}
+
+.contS{
+    width:100%;
+    margin-top:15px;
+    display: flex;
+    justify-content: center;
+}
+
+.alCenter{
+    text-align: center;
+}
+
+.w14{
+    width:14%;
+}
+
+.w10{width:12%}
+
+.w85{width:7%}
+
+.w20{
+    width:16%
+}
+
+.w2{
+    width: 2%;
+}
+
+.he{
+    position: sticky;
+    top: 120px;
+    z-index: 3;
+}
+
+.contT th{
+    background-color: $light-text;
+    color: $dark-text;
+    position: sticky;
+    top: 182px;
+    padding: 6px 0;
+}
+
+.backWhite{
+    position: fixed;
+    background-color: white;
+    width:100%;
+    height:233px;
+    top:0; left:0;
+    z-index: 0;
+}
+
+.contT th:first-child{
+    border-top-left-radius: 15px;
+}
+
+.contT th:last-child{
+    border-top-right-radius: 15px;
+}
+
+.mat-sort-header-container{
+    justify-content: center;
+}
+
+.contT td{
+    white-space: nowrap;
+    overflow:hidden;
+    margin: 2px;
+    text-align: center;
+    border: 1px solid lightgrey;
+    padding: 2px 5px;
+}
+
+.contT{
+    margin-top: 20px;
+    width:calc(100vw - 90px);
+    border-collapse: collapse;
+    color: $dark-text;
+}
+
+.backCG{
+    background-color: lightgreen;
+}
+
+.backCR{
+    background-color: lightcoral;
+}
+
+.backCY{
+    background-color: lightyellow;
+}
+
+mat-icon{
+    margin: 0;
+}
+
+.circ{
+    border-radius :100%;
+    width: 15px;
+    height:15px;
+    border: 1px solid grey;
+}
+
+::ng-deep .mat-sort-header-container {
+    display:flex;
+    justify-content:center;
+  }
+
+.filC{
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+    justify-items: flex-end;
+}
+
+
+.chb{
+    margin-right: 25px;
+}
+
+.spacer{
+    flex: 1 1 auto;
+}
+
+.but{
+    max-height: 50px;
+    min-width: unset;
+}
+
+@media only screen and (max-width: 700px){
+    .contT{
+        width:calc(100vw - 20px);
+    }
+}
+
+@media only screen and (max-width: 1200px)  {
+
+.contT, thead, tbody, th, td, tr { 
+    display: block; 
+}
+
+.contT thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+.contT tr { 
+    margin: 2px;
+    margin-bottom: 15px;
+}
+
+.contT td { 
+    /* Behave  like a "row" */
+    border: none;
+    
+    position: relative;
+    margin:0; padding:0;
+    padding-left: 45%; 
+    text-align:left;
+    min-height: 21px;
+    font-style: italic;
+    padding: 3px 0 3px 45%; 
+    background-color: rgb(245,245,245);
+    border-radius: 5% 5% 0 0;
+    border-bottom: .5px solid $dark-text;
+}
+
+/*.contT tr:nth-of-type(odd) { 
+    background: $dark-text;
+    color: $light-text; 
+  }
+  
+  .contT tr:nth-of-type(even) { 
+    background: $light-text;
+    color: $dark-text; 
+  }*/
+
+.contT td:before { 
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 0;
+    left: 0;
+    width: 40%; 
+    padding: 3px 10px; 
+    white-space: nowrap;
+    font-style:normal;
+}
+.contT td:nth-of-type(1) { background-color: white; color:$dark-text}
+.contT td:nth-of-type(1):before { content: "Notes"; }
+.contT td:nth-of-type(2):before { content: "Prev Date Hrs"; }
+.contT td:nth-of-type(3):before { content: "Serivice Status"; }
+.contT td:nth-of-type(4):before { content: "Service Pred Date"; }
+.contT td:nth-of-type(5):before { content: "Serial"; }
+.contT td:nth-of-type(6):before { content: "Model"; }
+.contT td:nth-of-type(7):before { content: "Customer"; }
+.contT td:nth-of-type(8):before { content: "Site"; }
+.contT td:nth-of-type(9):before { content: "Engine Hrs"; }
+.contT td:nth-of-type(10):before { content: "Service Step"; }
+.contT td:nth-of-type(11):before { content: "Next Service In"; }
+}

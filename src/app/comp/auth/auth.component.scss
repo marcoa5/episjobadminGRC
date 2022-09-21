@@ -1,0 +1,65 @@
+@import '../../../epi.scss';
+
+.cover{
+    width:100%;
+    position:fixed;
+    top:0; left:0;
+    background-color: white;
+    z-index: 2;
+    height: 280px;
+}
+
+table{
+    max-width: 100%;
+    border-collapse: collapse;
+    resize:both;
+    margin-top: 15px;
+}
+
+th{
+    border-bottom: 1px solid black;
+}
+
+td, th{
+    text-align: center; 
+    padding: 10px 0;    
+}
+
+.title{
+    position: sticky;
+    top: 265px;
+    background-color: rgb(245,245,245);
+    border-bottom: 1px solid $dark-text;
+    border-radius: 5px 5px 0 0;
+    z-index: 200;
+}
+
+.c{
+    text-align: left;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding-left: 10px;
+    min-width: 0;
+}
+
+.poi{
+    cursor: pointer;
+    text-align: left;
+}
+
+.poi:hover {
+    background-color: rgb(245,245,245);
+}
+
+.nav{
+    position:sticky;
+    top:182px;
+    z-index: 200;
+}
+
+.up{
+    z-index: 1000;
+    position: sticky;
+    top:130px;
+}
