@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
       route:'parts', 
       dis:false, 
       auth:['SU','admin','adminS','tech','customer','techwsadmin','wsadmin']
-    },
+    },*/
     {
       id:'Files',
       icon:'cloud_download', 
@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
       dis:false, 
       auth:['SU','admin','adminS','tech','']
     },
-    {
+    /*{
       id:'Visit',
       icon:'recent_actors', 
       route:'visit', 

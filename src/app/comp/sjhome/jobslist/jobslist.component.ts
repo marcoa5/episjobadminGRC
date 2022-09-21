@@ -5,7 +5,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeldialogComponent } from '../../util/dialog/deldialog/deldialog.component';
 import { Sort } from '@angular/material/sort';
 import { Subscription } from 'rxjs';
-import { renderFlagCheckIfStmt } from '@angular/compiler/src/render3/view/template';
+import { HttpClient } from '@angular/common/http'
+import { ApprovedialogComponent } from './approvedialog/approvedialog.component';
+import { environment } from 'src/environments/environment';
+import { GenericComponent } from '../../util/dialog/generic/generic.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'episjob-jobslist',
@@ -22,7 +26,7 @@ export class JobslistComponent implements OnInit {
   displayedColumns=['date','sn', 'customer','model']
   subsList:Subscription[]=[]
 
-  constructor(private auth:AuthServiceService, private dialog:MatDialog) { }
+  constructor(private snackBar:MatSnackBar, private http:HttpClient, private auth:AuthServiceService, private dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.subsList.push(
@@ -45,13 +49,13 @@ export class JobslistComponent implements OnInit {
   onResize() {
     if(window.innerWidth<500){
       if (this.pos=='SU' && this.alreadySent) {
-        this.displayedColumns=['date','sn','model','del']
+        this.displayedColumns=['date','sn','model','del','approve']
       } else {
         this.displayedColumns=['date','sn','model']
       }
     } else {
       if (this.pos=='SU' && this.alreadySent) {
-        this.displayedColumns=['date','sn', 'customer','model','del']
+        this.displayedColumns=['date','sn', 'customer','model','del','approve']
       } else {
         this.displayedColumns=['date','sn', 'customer','model']
       }
@@ -149,8 +153,45 @@ export class JobslistComponent implements OnInit {
   chPos(pos:string){
     return this.auth.acc(pos)
   }
+
+  approve(a:any){
+    let id = a.sjid
+    const d = this.dialog.open(ApprovedialogComponent,{data:'Service Job (' + a.prodotto1 + ' - ' + a.cliente11 + ')'})
+    d.afterClosed().subscribe(res=>{
+      if(res){
+        let dia = this.dialog.open(GenericComponent, {disableClose:true,data:{msg:'Saving data...'}})
+        a.firmatt1=''
+        a.firmacc1=''
+        let url=environment.url
+        this.http.post(url + 'sjPdfForApproval',a).subscribe((res:any)=>{
+          if(res.saved){
+            firebase.database().ref('Saved').child(a.matricola).child(getDaySave(a)).set(a)
+            .then(()=>{
+              firebase.database().ref('sjDraft').child('sent').child(a.sjid).remove()
+              .then(()=>{
+                this.snackBar.open('Service Job archived','',{duration:8000})
+                dia.close()
+              })
+              .catch(()=>{this.snackBar.open('Unabel to archive Service Job','',{duration:8000})})
+            })
+            .catch(()=>{this.snackBar.open('Unabel to archive Service Job','',{duration:8000})})
+            
+          } else {
+            this.snackBar.open('Unabel to archive Service Job','',{duration:8000})
+            dia.close()
+          }
+        })
+      }
+    })
+  }
 }
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
+
+function getDaySave(a:any){
+  let days:any=a.days
+  let l:number=days.length
+  return days[l-1].date.replace(/-/g,'') + ' - ' + a.author
 }

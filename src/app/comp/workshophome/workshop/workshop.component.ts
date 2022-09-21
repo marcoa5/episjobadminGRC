@@ -5,13 +5,8 @@ import { Subscription } from 'rxjs';
 import { AuthServiceService } from 'src/app/serv/auth-service.service';
 import { NewfileComponent } from './newfile/newfile.component';
 import firebase from 'firebase/app'
-import { weekdays } from 'moment';
 import { WeekdialogComponent } from './weekdialog/weekdialog.component';
 import { Clipboard } from '@angular/cdk/clipboard'
-import * as moment from 'moment';
-import { GenericComponent } from '../../util/dialog/generic/generic.component';
-import * as XLSX from 'xlsx-js-style'
-import { SelectmonthComponent } from './selectmonth/selectmonth.component';
 import { ArchivedialogComponent } from './archivedialog/archivedialog.component';
 import { SjnumberdialogComponent } from './sjnumberdialog/sjnumberdialog.component';
 import { GetworkshopreportService } from 'src/app/serv/getworkshopreport.service';

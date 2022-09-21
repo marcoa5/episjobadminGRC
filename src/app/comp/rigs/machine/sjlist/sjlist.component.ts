@@ -68,12 +68,15 @@ export class SjlistComponent implements OnInit {
 
   delete(n:number){
     let a = this._list[n]
+
     firebase.database().ref('Saved').child(a.matricola.toUpperCase()).child(a.path).once('value',g=>{
-      console.log(g.val())
       if(g.val()!=null) {
         const dia = this.dialog.open(DeldialogComponent, {data:{name:'Doc nr', desc:'SJ nr. ' + a.docbpcs + ' - ' + a.data11}})
         dia.afterClosed().subscribe(res=>{
           if(res) firebase.database().ref('Saved').child(a.matricola).child(a.path).remove()
+          .then(()=>{
+            firebase.storage().ref('Closed').child(a.info.fileName + '.pdf').delete()
+          })
         })
       }
     })

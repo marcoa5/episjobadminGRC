@@ -12,7 +12,6 @@ export class SjdialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<SjdialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   ngOnInit(): void {
-    
   }
 
   onNoClick(){
@@ -21,7 +20,7 @@ export class SjdialogComponent implements OnInit {
 
   download(a:string){
     this.dialogRef.close()
-    firebase.storage().ref('Closed/' + a).getDownloadURL()
+    firebase.storage().ref('Closed').child(this.data.info.fileName + '.pdf').getDownloadURL()
     .then(a=>{window.open(a)})
   }
 

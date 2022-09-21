@@ -463,20 +463,21 @@ export class SjComponent implements OnInit {
   sign(a:string){
     let dia:any
     if(a=='t') {
-      dia = this.dialog.open(RiskassComponent, {data: this.file.rs})
+      //dia = this.dialog.open(RiskassComponent, {data: this.file.rs})
       this.techSign=this.techSign_temp
     }
     if(a=='c') dia = this.dialog.open(SurveyComponent, {data:{name: this.file.contnomec, riss:this.file.rissondaggio}})
-    dia.afterClosed().subscribe((b:any)=>{
-      if(b){
-        if(a=='t') {
-          this.riskAss=b
+    if(dia) {
+      dia.afterClosed().subscribe((b:any)=>{
+        if(b){
+          if(a=='t') this.riskAss=b
+          if(a=='c') this.custSurv=b
+          
         }
-        if(a=='c') this.custSurv=b
-        this.torc=a
-        this.signatureClosed=false
-      }
-    }) 
+      })
+    }  
+    this.torc=a
+    this.signatureClosed=false
   }
 
   close(e:any){
@@ -613,7 +614,7 @@ export class SjComponent implements OnInit {
         h.sjid=newId?newId:this.rigForm.controls.sid.value
         this.file=h
         let info:any={
-          subject: "Scheda Lavoro - " + this.file.data11 + " - " + this.file.cliente11 + " - " + this.file.prodotto1 + " - " + this.file.matricola,
+          subject: "Service Job - " + this.file.data11 + " - " + this.file.cliente11 + " - " + this.file.prodotto1 + " - " + this.file.matricola,
           fileName: `${moment(new Date()).format('YYYYMMDDHHmmss')} - ${this.file.cliente11} - ${this.file.prodotto1} - ${this.file.matricola}`
         }
         this.file.info=info

@@ -1,9 +1,16 @@
-const { environment } = require("./environments/environment");
-
 importScripts('https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.6.2/firebase-messaging.js');
 
-firebase.initializeApp(environment.firebase);
+firebase.initializeApp({
+  apiKey: "AIzaSyA9OHPbSNKBJUE7DqLAopJkfMMICo8hkHw",
+  authDomain: "episjobadmingrc.firebaseapp.com",
+  databaseURL: "https://episjobadmingrc-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "episjobadmingrc",
+  storageBucket: "episjobadmingrc.appspot.com",
+  messagingSenderId: "918912403305",
+  appId: "1:918912403305:web:4346393bf9409facc91ff8",
+  measurementId: "G-R54FWQY8XB"
+  });
   const messaging = firebase.messaging()
   var url=''
   self.addEventListener('notificationclick', function(event) {

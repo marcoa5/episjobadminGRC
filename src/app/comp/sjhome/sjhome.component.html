@@ -9,7 +9,7 @@
         <button mat-raised-button color="primary" [disabled]="sjId==''" (click)="open(sjId)">Open</button>
         <button mat-raised-button color="primary" [disabled]="sjId=='' || !chOnline() || !chDel" (click)="delete()">{{chW()? 'Delete draft':'Delete'}}</button>
         <button mat-raised-button color="primary" [disabled]="sjId=='' && sjUrl==-1 || !chOnline()" (click)="exportPdf()">{{chW()? 'Export PDF':'PDF'}}</button>
-        <button mat-raised-button color="primary" [disabled]="sjId=='' && sjUrl==-1 || !chOnline()" (click)="exportMa()">{{chW()? 'Export MA':'MA'}}</button>
+        <!--<button mat-raised-button color="primary" [disabled]="sjId=='' && sjUrl==-1 || !chOnline()" (click)="exportMa()">{{chW()? 'Export MA':'MA'}}</button>-->
     </div>
     <episjob-spin *ngIf="spin && list1.length==0"></episjob-spin>
     <div *ngIf="!spin && list1.length>0">
