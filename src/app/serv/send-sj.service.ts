@@ -13,7 +13,7 @@ export class SendSJService {
   constructor(private dialog: MatDialog, private http:HttpClient, private _snackBar:MatSnackBar) { }
 
   send(id:string, data:any){
-    data.info.cc=true
+    data.info.cc=false
     return new Promise((res,rej)=>{
       let url:string=environment.url; 
       let d=this.dialog.open(GenericComponent,{disableClose:true,data:{msg:'Generating PDF and sending mail....'}})

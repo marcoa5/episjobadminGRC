@@ -1,10 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthServiceService } from 'src/app/serv/auth-service.service';
 import { GetfleetutilizationService } from 'src/app/serv/getfleetutilization.service';
 import { BackService } from '../../serv/back.service'
-
+import firebase from 'firebase/app';
 
 @Component({
   selector: 'episjob-rigs',
@@ -22,7 +23,7 @@ export class RigsComponent implements OnInit {
   subsList:Subscription[]=[]
   
   
-  constructor(private fleetHrs:GetfleetutilizationService, public router: Router, public bak:BackService, public auth: AuthServiceService) {}
+  constructor(private http:HttpClient, private fleetHrs:GetfleetutilizationService, public router: Router, public bak:BackService, public auth: AuthServiceService) {}
 
   ngOnInit(): void {
     this.subsList.push(
@@ -30,6 +31,7 @@ export class RigsComponent implements OnInit {
         if(a.length>0) {
           setTimeout(() => {
             this.rigs=a
+            console.log(a)
           }, 1);
         }
       })
@@ -93,5 +95,4 @@ export class RigsComponent implements OnInit {
   exportDetails(){
     this.fleetHrs.getHRS(this.rigs,true)
   }
-
 }

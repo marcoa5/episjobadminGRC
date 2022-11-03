@@ -7,6 +7,8 @@ import 'firebase/database'
 import { AuthServiceService } from 'src/app/serv/auth-service.service';
 import { Subscription } from 'rxjs';
 import { Clipboard } from '@angular/cdk/clipboard'
+import { HttpClient } from '@angular/common/http';
+import { MakeidService } from 'src/app/serv/makeid.service';
 
 @Component({
   selector: 'episjob-customers',
@@ -23,7 +25,7 @@ export class CustomersComponent implements OnInit {
   rigSn:string[]=[]
   subsList:Subscription[]=[]
 
-  constructor(public router: Router, public bak:BackService, private auth: AuthServiceService, private clip: Clipboard) {
+  constructor(private http:HttpClient, public router: Router, public bak:BackService, private auth: AuthServiceService, private clip: Clipboard, private makeid: MakeidService) {
     
   }
 
@@ -62,5 +64,4 @@ export class CustomersComponent implements OnInit {
     this.filtro=a
   }  
 
-  
 }

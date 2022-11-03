@@ -12,9 +12,9 @@ export class SurveyComponent implements OnInit {
   
   surveyForm!:FormGroup
   surveyList:string[]=[
-    'Organizzazione Intervento:',
-    'Consegna ricambi puntuale:',
-    'Esecuzione intervento:'
+    'Planning:',
+    'Parts delivery time:',
+    'Execution:'
   ]
   constructor(private fb:FormBuilder, public dialogRef: MatDialogRef<SurveyComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { 
     this.surveyForm=fb.group({

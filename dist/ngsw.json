@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1663765835710,
+  "timestamp": 1667477119547,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -15,7 +15,7 @@
         "/favicon.ico",
         "/firebase-messaging-sw.js",
         "/index.html",
-        "/main.8556500b9f7738f3bf0c.js",
+        "/main.056677a5716c8bda1d2a.js",
         "/manifest.webmanifest",
         "/polyfills.417612bdb82217a81c4b.js",
         "/runtime.7b63b9fd40098a2e8207.js",
@@ -46,6 +46,7 @@
         "/assets/Rigs/Production Drilling.png",
         "/assets/Rigs/RBM.png",
         "/assets/Rigs/Screener.png",
+        "/assets/Rigs/Surface Exploration.png",
         "/assets/Rigs/TH.png",
         "/assets/Rigs/Truck.png",
         "/assets/Rigs/Underground Exploration.png",
@@ -83,6 +84,7 @@
     "/assets/Rigs/Production Drilling.png": "cc7fab81033bac2a399371b44c6465878154786b",
     "/assets/Rigs/RBM.png": "296769dfe7488f9dcd1dc04731bd32b61a2de1ee",
     "/assets/Rigs/Screener.png": "df8ba3dc49fc3d56220ffe3789659000926af015",
+    "/assets/Rigs/Surface Exploration.png": "682095d48941c5474e0f2b19e92e89c6cd2ecb7c",
     "/assets/Rigs/TH.png": "b131d956d91a7a2d490dfb72f9553f9c73bc7f27",
     "/assets/Rigs/Truck.png": "48813ab2fd26b9d6a7ef438512ac46dbe642c03c",
     "/assets/Rigs/Underground Exploration.png": "a47250ea004fb200045eb5d204c8ccc9af27f02c",
@@ -102,8 +104,8 @@
     "/assets/icons/logo_grey.png": "31a9bda7d1427bf84d081fe2cf28374f86cb3096",
     "/favicon.ico": "dbb83986aa24f4f25c0c38242cbcf6abb7f7d1af",
     "/firebase-messaging-sw.js": "eba768074fd078a5d509bf11d1897c4c30f6edc6",
-    "/index.html": "59a68d951ebe0fe7b8c30941d41ac6cf6f62ec90",
-    "/main.8556500b9f7738f3bf0c.js": "a103f36196b780189428dac088f7afa2afce985d",
+    "/index.html": "e8794f38bd37afadd41b978a1d515733d92cdab0",
+    "/main.056677a5716c8bda1d2a.js": "68c432ac4ee4cf7d2b5335131b327d4f9ee2ccce",
     "/manifest.webmanifest": "617e3e9c6063184eb8c1ab4a6d71d5118c4974d0",
     "/polyfills.417612bdb82217a81c4b.js": "7a1f0d316ed2d8f78ba864126a896ddf873451c9",
     "/runtime.7b63b9fd40098a2e8207.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
