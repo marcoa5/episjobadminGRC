@@ -430,8 +430,13 @@ export class SjComponent implements OnInit {
           a.year = moment(a.date).format('YYYY')
 
           a['techs'] = a.tech.split(' ')[0].substring(0,1) + '.' + a.tech.split(' ')[1].substring(0,1) + '.'
+
           if(rt.info!=undefined){
-            this.days.splice(rt.info-1,1)
+            if(this.days!=undefined && this.days.length>0) {
+              this.days.splice(rt.info-1,1)
+            } else {
+              this.days=[]
+            }
             this.days.push(a)
           }
 

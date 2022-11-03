@@ -242,13 +242,13 @@ table td, table th{
     cursor: pointer;
 }
 
-@media screen and (max-width: 1020px) {
+@media screen and (max-width: 575px) {
     .lar{
         display: none;
     }
 }
 
-@media screen and (min-width: 1021px) {
+@media screen and (min-width: 576px) {
     .str{
         display: none;
     }

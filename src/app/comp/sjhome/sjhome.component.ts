@@ -349,7 +349,6 @@ export class SjhomeComponent implements OnInit {
 
   getFile(){
     let file:any|undefined
-    console.log(this.sjId)
     return new Promise((res,rej)=>{
       if(this.sjId.substring(0,3)=='sjs') {
         firebase.database().ref('sjDraft').child('sent').child(this.sjId).once('value',a=>{
@@ -377,6 +376,7 @@ export class SjhomeComponent implements OnInit {
         }, 10000);
         this.unSelect()
         let urlserver:string = environment.url
+        console.log(urlserver + 'sjpdf', file)
         this.http.post(urlserver + 'sjpdf', file, {responseType:'arraybuffer'}).subscribe((o:any)=>{
           console.log(typeof o,o)
           if(o){
@@ -393,6 +393,7 @@ export class SjhomeComponent implements OnInit {
               document.body.removeChild(href)
             }, 1)
           } else {
+            console.log('error')
             dia.close()
           }
         })

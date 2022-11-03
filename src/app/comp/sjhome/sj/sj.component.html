@@ -172,29 +172,29 @@
                         <th rowspan="2">DATE</th>
                         <th colspan="2" class="lar">{{rigForm.controls.type.value.toLowerCase()=='spe'?'SPO':'STD'}}</th>
                         <th colspan="2" class="lar">{{rigForm.controls.type.value.toLowerCase()=='spe'?'SPS':'STR'}}</th>
-                        <th colspan="2" class="lar">MNT</th>
+                        <!--<th colspan="2" class="lar">MNT</th>
                         <th colspan="2" class="lar">MF</th>
                         <th colspan="2" class="lar">MNF</th>
                         <th colspan="2" class="str">TOT</th>
                         <th rowspan="2" class="lar">KM</th>
                         <th rowspan="2" class="lar">SPV</th>
                         <th rowspan="2" class="lar">OFF</th>
-                        <th rowspan="2" class="lar">OFS</th>	
+                        <th rowspan="2" class="lar">OFS</th>	-->
                         <th rowspan="2">Del</th>	
                     </tr>
                     <tr episjobElevation class="tabTr">
-                        <th class="lar">V</th>
-                        <th class="lar">L</th>
-                        <th class="lar">V</th>
-                        <th class="lar">L</th>
-                        <th class="lar">V</th>
+                        <th class="lar">T</th>
+                        <th class="lar">W</th>
+                        <th class="lar">T</th>
+                        <th class="lar">W</th>
+                        <!--<th class="lar">V</th>
                         <th class="lar">L</th>
                         <th class="lar">V</th>
                         <th class="lar">L</th>
                         <th class="lar">V</th>
                         <th class="lar">L</th>
                         <th class="str">V</th>
-                        <th class="str">L</th>
+                        <th class="str">L</th>-->
                     </tr>
                     <tr [class.mat-elevation-z2]="true" *ngFor="let d of days; let i=index" clasS="tabTr dataR">
                         <td class="lar index"  (click)="addDay(i)">{{i+1}}</td>
@@ -206,7 +206,7 @@
                         <td class="lar" (click)="addDay(i)">{{d.hr.spol!=0?d.hr.spol:''}}</td>
                         <td class="lar" (click)="addDay(i)">{{d.hr.spsv!=0?d.hr.spsv:''}}</td>
                         <td class="lar" (click)="addDay(i)">{{d.hr.spsl!=0?d.hr.spsl:''}}</td>
-                        <td class="lar" (click)="addDay(i)">{{d.hr.mntv!=0?d.hr.mntv:''}}</td>
+                        <!--<td class="lar" (click)="addDay(i)">{{d.hr.mntv!=0?d.hr.mntv:''}}</td>
                         <td class="lar" (click)="addDay(i)">{{d.hr.mntl!=0?d.hr.mntl:''}}</td>
                         <td class="lar" (click)="addDay(i)">{{d.hr.mfv!=0?d.hr.mfv:''}}</td>
                         <td class="lar" (click)="addDay(i)">{{d.hr.mfl!=0?d.hr.mfl:''}}</td>
@@ -217,7 +217,7 @@
                         <td class="lar" (click)="addDay(i)">{{d.hr.km!=0?d.hr.km:''}}</td>
                         <td class="lar" (click)="addDay(i)">{{d.hr.spv!=0?d.hr.spv:''}}</td>
                         <td class="lar" (click)="addDay(i)">{{d.hr.off!=0?d.hr.off:''}}</td>
-                        <td class="lar" (click)="addDay(i)">{{d.hr.ofs!=0?d.hr.ofs:''}}</td>
+                        <td class="lar" (click)="addDay(i)">{{d.hr.ofs!=0?d.hr.ofs:''}}</td>-->
                         <td class="del" (click)="delete(i)">
                             <button mat-mini-fab class="dele" color="primary"><mat-icon class="dele1">clear</mat-icon></button>
                         </td>

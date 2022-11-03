@@ -44,7 +44,7 @@
                 </mat-form-field>
             </div>
 
-            <div class="hrsCont item3"  *ngIf="dayType=='fer' || dayType=='sat'">
+            <!--<div class="hrsCont item3"  *ngIf="dayType=='fer' || dayType=='sat'">
                 <mat-form-field  class="hrs" matTooltip="Night travel hours">
                     <mat-label>MNTV</mat-label>
                     <input matInput type="number" step=0.25 min=0 [max]="8-newDay.controls.mntl.value" autocomplete="off" formControlName="mntv" (input)="ch(8,'mntv','mntl')" (keyup)="chDec($event)">
@@ -97,7 +97,7 @@
                     <mat-label>OFS</mat-label>
                     <input matInput type="number" step=0.25 min=0 [max]="dayType=='sat'? 16 : 8" autocomplete="off" formControlName="ofs" (input)="chOF(8,'ofs')" (keyup)="chDec($event)">
                 </mat-form-field>
-            </div>
+            </div>-->
         </div>
     </form>
 </div>

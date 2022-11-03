@@ -31,7 +31,6 @@ export class RigsComponent implements OnInit {
         if(a.length>0) {
           setTimeout(() => {
             this.rigs=a
-            console.log(a)
           }, 1);
         }
       })
@@ -94,5 +93,24 @@ export class RigsComponent implements OnInit {
 
   exportDetails(){
     this.fleetHrs.getHRS(this.rigs,true)
+  }
+
+
+  import(e:any){
+    let myRe = new FileReader()
+    myRe.onloadend = (e)=>{
+      let res = myRe.result?.toString()
+      let righe = res!.split('\r\n')
+      righe.forEach(r=>{
+        let da = r.split('\t')
+        firebase.database().ref('Hours').child(da[0]).child(da[1]).set({
+          orem: da[2]?da[2]:"",
+          perc1:da[3]?da[3]:"",
+          perc2:da[4]?da[4]:"",
+          perc3:da[5]?da[5]:""
+        })
+      })
+    }
+    myRe.readAsText(e.target.files[0])
   }
 }
