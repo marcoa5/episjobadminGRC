@@ -12,16 +12,8 @@ export class DaytypesjService {
     let y = parseInt(moment(a).format('YYYY'))
     let holy: string[]=[
       moment(new Date(y, 0,1)).format('YYYY-MM-DD'),
-      moment(new Date(y,0,6)).format('YYYY-MM-DD'),
-      moment(new Date(y,3,25)).format('YYYY-MM-DD'),
       moment(new Date(y,4,1)).format('YYYY-MM-DD'),
-      moment(new Date(y,5,2)).format('YYYY-MM-DD'),
-      moment(new Date(y,7,15)).format('YYYY-MM-DD'),
       moment(new Date(y,10,1)).format('YYYY-MM-DD'),
-      moment(new Date(y,11,8)).format('YYYY-MM-DD'),
-      //moment(new Date(y,11,24)).format('YYYY-MM-DD'),
-      moment(new Date(y,11,25)).format('YYYY-MM-DD'),
-      moment(new Date(y,11,26)).format('YYYY-MM-DD'),
       //moment(new Date(y,11,31)).format('YYYY-MM-DD'),
     ]
     holy.push(moment(Easter(y)).format('YYYY-MM-DD'))

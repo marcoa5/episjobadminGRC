@@ -102,7 +102,7 @@ export class AppComponent {
     let tokens:any[]=[]
     if(messaging!=undefined){
       try{
-        messaging.getToken({vapidKey:'BETaY1oMq6ONzg-9B-uNHl27r4hcKd5UVH-EgNEXLQ9kUzqDwGq8nZwZTDN0klxbC-Oz-nSz6yGTzDD0R4h_vXY'})
+        messaging.getToken({vapidKey:'BNCBAJpVs8EtrkCovyik4XL4c6cJ8pUbvjzczsspwSm3DTdHhDoru9-etJC1wnpWVGyY8al1-YK4-9LPJzzH9nw'})
       .then((t:any)=>{
         firebase.database().ref('Tokens').child(this.userId).child(t).set({
           token: t,
