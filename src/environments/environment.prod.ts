@@ -38,7 +38,7 @@ export const environment = {
 	],
   appVersion: require('../../package.json').version,
   production: true,
-  //url: 'http://localhost:3001/'
-  url: 'https://episjobreqgrc.herokuapp.com/'
+  //url: 'http://localhost:3001/grc/'
+  url: 'https://episjobreq.herokuapp.com/grc/'
   //url: '/api/'
 };
