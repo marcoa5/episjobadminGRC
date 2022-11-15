@@ -182,22 +182,24 @@ export class MachineComponent implements OnInit {
         }
         //if(a==0) this.filter(new Date(moment(new Date()).subtract(3,'months').format('YYYY-MM-DD')),new Date())
         if(a==1) this.filter(this.inizio,this.fine)
-        await this.checkComm()
-        this.lastRead()
+        this.checkComm()
+        //.then(()=>{this.lastRead()})
       })
     }) 
   }
 
   lastRead(){
-    if(this.cCom>0 && this.datafil[0].y!='c') {
-      this.hrsLabels.push({
-        value:moment(this.data[this.data.length-1].x).format('DD/MM/YYYY'),
-        lab: 'Last Read',
-        click:'',
-        url:''
-      })
-    } 
-    console.log(this.hrsLabels)
+    return new Promise((res,rej)=>{
+      if(this.cCom>0 && this.datafil[0].y!='c') {
+        this.hrsLabels.push({
+          value:moment(this.data[this.data.length-1].x).format('DD/MM/YYYY'),
+          lab: 'Last Read',
+          click:'',
+          url:''
+        })
+      } 
+      res('')
+    })
   }
 
   loadData(){
@@ -279,6 +281,7 @@ export class MachineComponent implements OnInit {
           {value:this.impAvg && this.impAvg[1]==3?`${this.th(this.data[this.data.length-1].y3)} ${this.impAvg[0]}`:this.th(this.data[this.data.length-1].y3),lab: 'Percussion 3',click:'',url:''}
         ]  
       }
+      this.lastRead()
     }
     this.loadServiceJobs(i,f)
   }
@@ -488,9 +491,7 @@ export class MachineComponent implements OnInit {
     await this.filter(e[0],e[1]) 
     this.loadPartsReq()
     this.checkComm()
-    .then(()=>{
-      this.lastRead()
-    })
+    //.then(()=>{this.lastRead()})
   }
 
   avgHrs(){
@@ -765,7 +766,6 @@ export class MachineComponent implements OnInit {
     this.elenco=[]
     //this.elenco.push('sn;model;date;SJ nr;Eng hrs;Perc1 hrs;Perc2 hrs;Perc3 hrs;Travel hrs;Working hrs;Days')
     firebase.database().ref('Saved').child(this.valore).once('value',b=>{
-      console.log(b.val())
       b.forEach(c=>{
           let x = c.val()
           let lavoro:number=0, viaggio:number=0, ind:number=0
@@ -799,7 +799,6 @@ export class MachineComponent implements OnInit {
     })
     .then(()=>{
       new Promise(res=>{
-        console.log(this.elenco)
         let a1:boolean=false
         let a2:boolean=false
         let a3:boolean=false
@@ -810,7 +809,6 @@ export class MachineComponent implements OnInit {
           if(item.Perc2!=null) a2=true
           if(item.Perc3!=null) a3=true
           check++
-          console.log(check,length)
           if(length==check) res([a1,a2,a3])
         })
       })
@@ -1059,3 +1057,5 @@ export class MachineComponent implements OnInit {
       d.close()
     })
   }
+}
+ 
