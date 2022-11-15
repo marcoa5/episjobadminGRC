@@ -163,12 +163,39 @@ export class JobslistComponent implements OnInit {
         a.firmatt1=''
         a.firmacc1=''
         let url=environment.url
+        console.log(a)
+        let timeS:string|undefined
+        for(let i = 1; i<8;i++){
+          if(a['dat'+i+1]!=''){
+            timeS=a['dat'+i+3]+a['dat'+i+2]+a['dat'+i+1]
+          }
+        }
+        if(a.matricola!='' && a.matricola!=undefined && timeS!=undefined && timeS!=''){
+          var data ={
+            tech: a.author,
+            orem: a.orem1?a.orem.replace(/[.]/g,''):0,
+            perc1: a.perc11?a.perc11.replace(/[.]/g,''):0,
+            perc2: a.perc21?a.perc21.replace(/[.]/g,''):0,
+            perc3: a.perc31?a.perc31.replace(/[.]/g,''):0
+          }
+        }
         this.http.post(url + 'sjPdfForApproval',a).subscribe((res:any)=>{
           if(res.saved){
             firebase.database().ref('Saved').child(a.matricola).child(getDaySave(a)).set(a)
             .then(()=>{
               firebase.database().ref('sjDraft').child('sent').child(a.sjid).remove()
               .then(()=>{
+                if(timeS && a.matricola) {
+                  firebase.database().ref('Hours').child(a.matricola).child(timeS).set(data)
+                  .then(()=>{
+                    console.log('Hours registered')
+                  })
+                  .catch((err)=>{
+                    console.log(err)
+                  })
+                } else {
+                  console.log('Hours NOT registered')
+                }
                 this.snackBar.open('Service Job archived','',{duration:8000})
                 dia.close()
               })
@@ -181,6 +208,7 @@ export class JobslistComponent implements OnInit {
             dia.close()
           }
         })
+        /**/
       }
     })
   }

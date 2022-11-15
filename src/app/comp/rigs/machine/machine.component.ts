@@ -150,7 +150,7 @@ export class MachineComponent implements OnInit {
       this.loadContract()
       this.loadWsFiles()
       this.loadData()
-      .then(()=>{
+      .then(async ()=>{
         if(this.data[0]) this.inizio=this.data[0].x
         this._rigLabels=[
           {value:this.valore, lab:'Serial Nr.',click:'',url:''},
@@ -182,7 +182,7 @@ export class MachineComponent implements OnInit {
         }
         //if(a==0) this.filter(new Date(moment(new Date()).subtract(3,'months').format('YYYY-MM-DD')),new Date())
         if(a==1) this.filter(this.inizio,this.fine)
-        this.checkComm()
+        await this.checkComm()
         this.lastRead()
       })
     }) 
@@ -197,6 +197,7 @@ export class MachineComponent implements OnInit {
         url:''
       })
     } 
+    console.log(this.hrsLabels)
   }
 
   loadData(){
@@ -1058,5 +1059,3 @@ export class MachineComponent implements OnInit {
       d.close()
     })
   }
-}
- 
