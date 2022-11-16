@@ -22,6 +22,7 @@ export class JobslistComponent implements OnInit {
   @Input() alreadySent:boolean=false
   @Output() select=new EventEmitter()
   @Output() directopen=new EventEmitter()
+  uName:string=''
   pos:string=''
   sortedData:any[]=[]
   displayedColumns=['date','sn', 'customer','model']
@@ -33,6 +34,7 @@ export class JobslistComponent implements OnInit {
     this.subsList.push(
       this.auth._userData.subscribe(a=>{
         if(a) {
+          this.uName=a.Nome + ' ' + a.Cognome
           this.pos=a.Pos
         }
       })
@@ -199,8 +201,9 @@ export class JobslistComponent implements OnInit {
                 }
                 this.snackBar.open('Service Job archived','',{duration:8000})
 
-
-                this.notif.newNotification(users,str,b + ' - ' +  a + '(' + c + ')',this.uName,'_newrig', './machine,{"sn":"' + a + '"}')
+                this.getUsersForNotif().then((users:any)=>{
+                  this.notif.newNotification(users,`New Service Job Archived`,`New Service Job for ${a.matricola} has been archived by ${this.uName}`, this.uName,'_sj',`./machine,{"sn":"${a.matricola}"}`)
+                })
                 dia.close()
               })
               .catch(()=>{this.snackBar.open('Unabel to archive Service Job','',{duration:8000})})
@@ -218,7 +221,7 @@ export class JobslistComponent implements OnInit {
   }
 
   getUsersForNotif(){
-    let users=[]
+    let users:any[]=[]
     return new Promise((res,rej)=>{
       firebase.database().ref('Users').once('value',a=>{
         a.forEach(b=>{
@@ -227,6 +230,7 @@ export class JobslistComponent implements OnInit {
           }
         })
       })
+      .then(()=>{res(users)})
     })
   }
 }
