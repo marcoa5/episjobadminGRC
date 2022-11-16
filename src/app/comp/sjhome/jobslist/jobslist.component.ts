@@ -10,6 +10,7 @@ import { ApprovedialogComponent } from './approvedialog/approvedialog.component'
 import { environment } from 'src/environments/environment';
 import { GenericComponent } from '../../util/dialog/generic/generic.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotifService } from 'src/app/serv/notif.service';
 
 @Component({
   selector: 'episjob-jobslist',
@@ -26,7 +27,7 @@ export class JobslistComponent implements OnInit {
   displayedColumns=['date','sn', 'customer','model']
   subsList:Subscription[]=[]
 
-  constructor(private snackBar:MatSnackBar, private http:HttpClient, private auth:AuthServiceService, private dialog:MatDialog) { }
+  constructor(private snackBar:MatSnackBar, private http:HttpClient, private auth:AuthServiceService, private dialog:MatDialog, private notif:NotifService) { }
 
   ngOnInit(): void {
     this.subsList.push(
@@ -185,7 +186,7 @@ export class JobslistComponent implements OnInit {
             .then(()=>{
               firebase.database().ref('sjDraft').child('sent').child(a.sjid).remove()
               .then(()=>{
-                if(timeS && a.matricola) {
+                if(timeS && a.matricola && data.orem>0) {
                   firebase.database().ref('Hours').child(a.matricola).child(timeS).set(data)
                   .then(()=>{
                     console.log('Hours registered')
@@ -197,6 +198,9 @@ export class JobslistComponent implements OnInit {
                   console.log('Hours NOT registered')
                 }
                 this.snackBar.open('Service Job archived','',{duration:8000})
+
+
+                this.notif.newNotification(users,str,b + ' - ' +  a + '(' + c + ')',this.uName,'_newrig', './machine,{"sn":"' + a + '"}')
                 dia.close()
               })
               .catch(()=>{this.snackBar.open('Unabel to archive Service Job','',{duration:8000})})
@@ -210,6 +214,19 @@ export class JobslistComponent implements OnInit {
         })
         /**/
       }
+    })
+  }
+
+  getUsersForNotif(){
+    let users=[]
+    return new Promise((res,rej)=>{
+      firebase.database().ref('Users').once('value',a=>{
+        a.forEach(b=>{
+          if(b.val().Pos=='SU' && b.val()._newrig=='1'){
+            if(b.key) users.push(b.key)
+          }
+        })
+      })
     })
   }
 }
