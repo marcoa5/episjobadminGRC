@@ -163,10 +163,7 @@ export class JobslistComponent implements OnInit {
     d.afterClosed().subscribe(res=>{
       if(res){
         let dia = this.dialog.open(GenericComponent, {disableClose:true,data:{msg:'Saving data...'}})
-        a.firmatt1=''
-        a.firmacc1=''
         let url=environment.url
-        console.log(a)
         let timeS:string|undefined
         for(let i = 1; i<8;i++){
           if(a['dat'+i+1]!=''){

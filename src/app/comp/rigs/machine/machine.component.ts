@@ -576,7 +576,9 @@ export class MachineComponent implements OnInit {
   }
 
   open(e:any){
-    if(e=="mol")  window.open('https://mol.epiroc.com/search-criteria/search?snmin=' + this.valore, "_blank");
+    let urlMOL:string = 'https://mol.epiroc.com/searchcriteria/search?snmin=' + this.valore
+    console.log(urlMOL)
+    if(e=="mol")  window.open(urlMOL, "_blank");
   }
 
   onResize(){
