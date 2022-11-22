@@ -171,9 +171,10 @@ export class JobslistComponent implements OnInit {
           }
         }
         if(a.matricola!='' && a.matricola!=undefined && timeS!=undefined && timeS!=''){
+          console.log('orem: ' + a.orem1,'perc1: ' + a.perc11,'perc2: '+a.perc21,'perc3: '+a.perc31)
           var data ={
             tech: a.author,
-            orem: a.orem1?a.orem.replace(/[.]/g,''):0,
+            orem: a.orem1?a.orem1.replace(/[.]/g,''):0,
             perc1: a.perc11?a.perc11.replace(/[.]/g,''):0,
             perc2: a.perc21?a.perc21.replace(/[.]/g,''):0,
             perc3: a.perc31?a.perc31.replace(/[.]/g,''):0
