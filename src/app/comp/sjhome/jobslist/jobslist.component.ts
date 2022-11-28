@@ -25,7 +25,7 @@ export class JobslistComponent implements OnInit {
   uName:string=''
   pos:string=''
   sortedData:any[]=[]
-  displayedColumns=['date','sn', 'customer','model']
+  displayedColumns=['date','author','sn', 'customer','model']
   subsList:Subscription[]=[]
 
   constructor(private snackBar:MatSnackBar, private http:HttpClient, private auth:AuthServiceService, private dialog:MatDialog, private notif:NotifService) { }
@@ -50,17 +50,17 @@ export class JobslistComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize() {
-    if(window.innerWidth<500){
+    if(window.innerWidth<700){
       if (this.pos=='SU' && this.alreadySent) {
-        this.displayedColumns=['date','sn','model','del','approve']
+        this.displayedColumns=['date','sn','model','del']
       } else {
         this.displayedColumns=['date','sn','model']
       }
     } else {
       if (this.pos=='SU' && this.alreadySent) {
-        this.displayedColumns=['date','sn', 'customer','model','del','approve']
+        this.displayedColumns=['date','author','sn', 'customer','model','del']
       } else {
-        this.displayedColumns=['date','sn', 'customer','model']
+        this.displayedColumns=['date','author','sn', 'customer','model']
       }
     }
   }
