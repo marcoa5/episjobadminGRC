@@ -52,13 +52,13 @@ export class JobslistComponent implements OnInit {
   onResize() {
     if(window.innerWidth<700){
       if (this.pos=='SU' && this.alreadySent) {
-        this.displayedColumns=['date','sn','model','del']
+        this.displayedColumns=['date','sn','model','approve','del']
       } else {
         this.displayedColumns=['date','sn','model']
       }
     } else {
       if (this.pos=='SU' && this.alreadySent) {
-        this.displayedColumns=['date','author','sn', 'customer','model','del']
+        this.displayedColumns=['date','author','sn', 'customer','model','approve','del']
       } else {
         this.displayedColumns=['date','author','sn', 'customer','model']
       }
