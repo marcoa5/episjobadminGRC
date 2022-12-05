@@ -12,6 +12,8 @@ import { AuthServiceService } from 'src/app/serv/auth-service.service';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { CustalreadyexistdialogComponent } from '../../util/dialog/custalreadyexistdialog/custalreadyexistdialog.component';
+import 'moment-timezone'
+import { environment } from 'src/environments/environment';
 
 export interface cl {
   c1: string
@@ -102,7 +104,7 @@ export class NewcustComponent implements OnInit {
                 })
               })
             }
-            firebase.database().ref('Updates').child('Custupd').set(moment(new Date).format('YYYYMMDDHHmmss'))
+            firebase.database().ref('Updates').child('Custupd').set(moment.tz(new Date(),environment.zone).format('YYYYMMDDHHmmss'))
             this.router.navigate(['cliente',{id:this.origin[0]}])
           })
           .catch(err=> console.log(err))
@@ -118,7 +120,7 @@ export class NewcustComponent implements OnInit {
         g.id = newId
         firebase.database().ref('CustomerC').child(newId).set(g)
         .then(()=>{
-          firebase.database().ref('Updates').child('Custupd').set(moment(new Date).format('YYYYMMDDHHmmss'))
+          firebase.database().ref('Updates').child('Custupd').set(moment.tz(new Date(),environment.zone).format('YYYYMMDDHHmmss'))
           this.location.back()
         })
         .catch(err=> console.log(err))

@@ -4,8 +4,9 @@ import 'firebase/auth'
 import 'firebase/database'
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import * as moment from 'moment'
-import { identifierModuleUrl } from '@angular/compiler';
+import 'moment-timezone'
 import { environment } from '../../environments/environment'
+import 'moment-timezone'
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,7 @@ export class AuthServiceService {
                 c['uid']=r!.uid
                 localStorage.setItem('user',JSON.stringify(c))
                 this.userData.next(c)
-                let time:string = moment(new Date).format('YYYY-MM-DD HH:mm:ss')
+                let time:string = moment.tz(new Date(),environment.zone).format('YYYY-MM-DD HH:mm:ss')
                 firebase.database().ref('Login').child(c.uid+'-'+c.Nome + ' ' + c.Cognome).child(time).set({
                   Login: time,
                   Ver: environment.appVersion
@@ -410,7 +411,7 @@ export class AuthServiceService {
         if(snap.val()) {
           server=snap.val()
         } else {
-          server=moment(new Date()).format('YYYYMMDDHHmmss')
+          server=moment.tz(new Date(),environment.zone).format('YYYYMMDDHHmmss')
         }
       })
       .catch(()=>{res('')})
@@ -467,7 +468,7 @@ export class AuthServiceService {
         if(snap.val()) {
           server=snap.val()
         } else {
-          server=moment(new Date()).format('YYYYMMDDHHmmss')
+          server=moment.tz(new Date(),environment.zone).format('YYYYMMDDHHmmss')
         }
       })
       .catch(()=>{res('')})
@@ -522,7 +523,7 @@ export class AuthServiceService {
         if(snap.val()) {
           server=snap.val()
         } else {
-          server=moment(new Date()).format('YYYYMMDDHHmmss')
+          server=moment.tz(new Date(),environment.zone).format('YYYYMMDDHHmmss')
         }
       })
       .catch(()=>{res('')})

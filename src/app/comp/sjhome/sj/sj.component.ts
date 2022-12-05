@@ -19,6 +19,7 @@ import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GenericComponent } from '../../util/dialog/generic/generic.component';
 import { SendSJService } from 'src/app/serv/send-sj.service';
+import 'moment-timezone'
 
 export interface ma{
   [k:string]: string|number|any;
@@ -611,7 +612,7 @@ export class SjComponent implements OnInit {
         let y = parseInt(g.substring(6,10))
         let n_d = new Date(y,m,d)
         h.data_new=moment(n_d).format('YYYY-MM-DD')
-        h.lastM = moment(new Date()).format('YYYYMMDDHHmmss')
+        h.lastM = moment.tz(new Date(),environment.zone).format('YYYYMMDDHHmmss')
         if(last) {
           let tempId:string = this.rigForm.controls.sid.value
           h.sjid=tempId
@@ -622,7 +623,7 @@ export class SjComponent implements OnInit {
         this.file=h
         let info:any={
           subject: "Service Job - " + this.file.data11 + " - " + this.file.cliente11 + " - " + this.file.prodotto1 + " - " + this.file.matricola,
-          fileName: `${moment(new Date()).format('YYYYMMDDHHmmss')} - ${this.file.cliente11} - ${this.file.prodotto1} - ${this.file.matricola}`
+          fileName: `${moment.tz(new Date(),environment.zone).format('YYYYMMDDHHmmss')} - ${this.file.cliente11} - ${this.file.prodotto1} - ${this.file.matricola}`
         }
         this.file.info=info
         if(this.sjType=='s') {
@@ -691,10 +692,6 @@ export class SjComponent implements OnInit {
   }
 
   async send(){
-    /*let info:any={
-      subject: "Scheda Lavoro - " + this.file.data11 + " - " + this.file.cliente11 + " - " + this.file.prodotto1 + " - " + this.file.matricola,
-      fileName: `${moment(new Date()).format('YYYYMMDDHHmmss')} - ${this.file.cliente11} - ${this.file.prodotto1} - ${this.file.matricola}`
-    }*/
     localStorage.getItem(this.rigForm.controls.sid.value)
     let g:string = this.rigForm.controls.sid.value
     if(g.split('')[2]!='s') g='sjsent' + this.id.makeId(5)
