@@ -43,7 +43,7 @@ export class UsersComponent implements OnInit {
             if(d.val()!=null) {
               bb = Object.keys(d.val())
               let temp:any=Object.values(d.val())
-              version=temp[0].AppVersion
+              version=temp[0].Ver
             }
             this.users.push({nome: c.val().Nome, cognome: c.val().Cognome, pos: c.val().Pos, mail: b.email, uid:b.uid, lastlog: bb?(version?bb + ' (' + version + ')':bb):''})
             this.users.sort((a: any, b: any) => {
