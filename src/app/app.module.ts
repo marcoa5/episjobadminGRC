@@ -172,6 +172,8 @@ import { CustalreadyexistdialogComponent } from './comp/util/dialog/custalreadye
 import { PricingComponent } from './comp/pricing/pricing.component';
 import { NewpriceComponent } from './comp/pricing/newprice/newprice.component';
 import { ApprovedialogComponent } from './comp/sjhome/jobslist/approvedialog/approvedialog.component'
+import { SelectdialogComponent } from './comp/files/selectdialog/selectdialog.component'
+
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'outline'
 };
@@ -323,7 +325,8 @@ export const MY_FORMATS = {
     CustalreadyexistdialogComponent,
     PricingComponent,
     NewpriceComponent,
-    ApprovedialogComponent
+    ApprovedialogComponent,
+    SelectdialogComponent
   ],
   imports: [
     BrowserModule, FormsModule, MatSidenavModule, MatSortModule, ReactiveFormsModule, MatTableModule,MatSelectModule, MatPaginatorModule, MatDatepickerModule, MatBadgeModule, MatListModule, MatTooltipModule,
